@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#2a0a12" />
+  <meta name="description" content="Ebru için" />
+  <title>Bir Ay — Ebru'ya</title>
+
+  <!-- Open Graph / Social preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Ebru için" />
+  <meta property="og:description" content="Seni düşünmek güzel şey, ümitli şey..." />
+  <meta property="og:image" content="images/photo-1.jpg" />
+  <meta property="og:image:alt" content="Ebru ve Furkan — bir aylık anılarımızdan bir kare" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:site_name" content="Bir Ay — Ebru'ya" />
+
+  <!-- Twitter card (mirrors OG so iMessage / X / WhatsApp all pick something up) -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ebru için · Bir Aylık" />
+  <meta name="twitter:description" content="Seni düşünmek güzel şey, ümitli şey..." />
+  <meta name="twitter:image" content="images/photo-1.jpg" />
+
+  <!-- Tiny inline heart favicon (no extra file needed) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23c98a98' d='M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9z'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Lato:wght@300;400;700&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============ PAGE LOADER (rose SVG draws itself, then fades) ============ -->
+  <div id="loader" class="loader" role="status" aria-live="polite" aria-label="Sayfa yükleniyor">
+    <svg class="loader-rose" viewBox="0 0 120 120" aria-hidden="true">
+      <!-- Stem -->
+      <path class="loader-path loader-path--stem"
+            d="M60 110 C 60 92, 58 80, 60 66" />
+      <!-- Leaf -->
+      <path class="loader-path loader-path--leaf"
+            d="M60 84 C 50 80, 42 78, 38 86 C 44 90, 54 90, 60 84 Z" />
+      <!-- Outer rose petals (spiral) -->
+      <path class="loader-path loader-path--outer"
+            d="M60 66
+               C 36 66, 30 46, 46 36
+               C 60 28, 80 34, 84 50
+               C 88 66, 74 78, 60 76
+               C 48 74, 42 66, 46 56
+               C 50 48, 60 46, 66 52
+               C 72 58, 70 66, 62 66" />
+      <!-- Inner bud -->
+      <path class="loader-path loader-path--bud"
+            d="M58 60
+               C 54 56, 58 50, 64 54
+               C 68 58, 64 62, 58 60 Z" />
+    </svg>
+    <p class="loader-word">Ebru</p>
+  </div>
+
+  <!-- Visually-hidden page heading for screen readers (semantic h1) -->
+  <h1 class="visually-hidden">Bir Ay — Ebru için bir aylık aşk günlüğü</h1>
+
+  <!--
+  ===================================================================
+  CONTENT GUIDE — How to personalise this site
+  -------------------------------------------------------------------
+  Every editable area below is marked with an HTML comment that
+  begins with "EDIT:". Search the file for "EDIT:" to jump between
+  them. Each comment names the field, says what kind of content
+  belongs there, and gives an example. For photos, see images/README.md.
+  ===================================================================
+  -->
+
+  <!-- Falling petals layer (CSS-only animation) -->
+  <div class="petals" aria-hidden="true">
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+  </div>
+
+  <!-- Ambient floating rose petals (subtle, slow) -->
+  <div class="rose-petals" aria-hidden="true">
+    <span class="rose"></span>
+    <span class="rose"></span>
+    <span class="rose"></span>
+    <span class="rose"></span>
+    <span class="rose"></span>
+    <span class="rose"></span>
+    <span class="rose"></span>
+    <span class="rose"></span>
+    <span class="rose"></span>
+    <span class="rose"></span>
+  </div>
+
+  <nav class="side-nav" aria-label="Bölümler">
+    <a href="#hero" class="dot" data-label="Başlangıç"></a>
+    <a href="#gallery" class="dot" data-label="Anılar"></a>
+    <a href="#timeline" class="dot" data-label="Zaman Çizgisi"></a>
+    <a href="#memories" class="dot" data-label="Hatıralar"></a>
+    <a href="#poems" class="dot" data-label="Şiirler"></a>
+    <a href="#letter" class="dot" data-label="Mektup"></a>
+    <a href="#footer" class="dot" data-label="Son"></a>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section id="hero" class="section hero">
+    <div class="hero-inner reveal">
+      <p class="overline">Sevgili Ebru'ya</p>
+      <figure class="tile tile--tall reveal">
+        <!--
+          EDIT: HERO PHOTO
+          What:    The opening portrait at the top of the page.
+          Format:  Landscape 1200×800 or portrait 800×1200, .jpg / .jpeg / .webp
+          Where:   Drop the file into images/ and update src below.
+          Example: src="images/HeroPhoto-1.jpeg"  alt="Furkan ve Ebru'nun portresi"
+        -->
+        <img src="images/photo-29.jpeg" alt="Furkan ve Ebru'nun portresi" />
+      </figure>
+
+      <!--
+        EDIT: HERO SUBTITLE
+        What:    Short poetic line below the hero photo, between em-dashes.
+        Length:  4–8 Turkish words.
+        Example: — Otuz gün, bin bir kalp atışı —
+      -->
+      <p class="hero-sub">— Otuz gün, bin bir kalp atışı —</p>
+
+      <!--
+        EDIT: HERO QUOTE
+        What:    A Turkish love quote that sets the tone of the page.
+        Length:  1–3 lines, use <br /> for line breaks.
+        Example: Nâzım Hikmet, Cemal Süreya, Cahit Sıtkı, or your own words.
+      -->
+      <blockquote class="hero-quote">
+        “Seni düşünmek güzel şey, ümitli şey,<br />
+        dünyanın en güzel sesinden en güzel şarkıyı dinlemek gibi bir şey...”
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section id="gallery" class="section gallery">
+    <header class="section-head reveal">
+      <p class="overline">Bölüm I</p>
+      <h2>Donmuş Anlar</h2>
+      <p class="section-sub">Zamanın durduğu o küçük kareler...</p>
+    </header>
+
+    <!--
+      GALLERY NOTES
+      • Six photo tiles below. Each <figure class="tile"> = one photo + caption.
+      • To add MORE photos (up to 20+), duplicate any whole <figure>…</figure>
+        block, change photo-N.jpg to photo-7.jpg, photo-8.jpg, etc., and update
+        the caption. See images/README.md for sizing and naming rules.
+      • Modifier classes: "tile--tall" = double-height, "tile--wide" = double-width.
+    -->
+    <!--
+      GALLERY — En güzel 10 kare burada.
+      Tüm 68 fotoğraf için sayfanın altındaki "Tüm Anıları Gör" düğmesini
+      tıklayın → anilar.html. Dosya uzantısı: .jpeg (tüm fotoğraflar JPEG).
+    -->
+    <div class="masonry">
+
+      <figure class="tile tile--tall reveal">
+        <!-- EDIT: GALLERY PHOTO 1 — tall portrait | images/photo-1.jpeg -->
+        <img src="images/photo-1.jpeg" alt="Anı 1" />
+        <figcaption>
+          <!-- EDIT: CAPTION 1 -->
+          İlk bakışın, ilk gülüşün.
+        </figcaption>
+      </figure>
+
+      <figure class="tile reveal">
+        <!-- EDIT: GALLERY PHOTO 2 — standard | images/photo-2.jpeg -->
+        <img src="images/photo-2.jpeg" alt="Anı 2" />
+        <figcaption>
+          <!-- EDIT: CAPTION 2 -->
+          O kahve, o akşam, o sen.
+        </figcaption>
+      </figure>
+
+      <figure class="tile reveal">
+        <!-- EDIT: GALLERY PHOTO 3 — standard | images/photo-3.jpeg -->
+        <img src="images/photo-3.jpeg" alt="Anı 3" />
+        <figcaption>
+          <!-- EDIT: CAPTION 3 -->
+          Ellerimiz ilk kez buluştuğunda.
+        </figcaption>
+      </figure>
+
+      <figure class="tile tile--wide reveal">
+        <!-- EDIT: GALLERY PHOTO 4 — wide panorama | images/photo-4.jpeg -->
+        <img src="images/photo-4.jpeg" alt="Anı 4" />
+        <figcaption>
+          <!-- EDIT: CAPTION 4 -->
+          Yağmurun altında, sadece ikimiz.
+        </figcaption>
+      </figure>
+
+      <figure class="tile tile--tall reveal">
+        <!-- EDIT: GALLERY PHOTO 5 — tall portrait | images/photo-5.jpeg -->
+        <img src="images/photo-5.jpeg" alt="Anı 5" />
+        <figcaption>
+          <!-- EDIT: CAPTION 5 -->
+          Gözlerinde kaybolduğum o saniye.
+        </figcaption>
+      </figure>
+
+      <figure class="tile reveal">
+        <!-- EDIT: GALLERY PHOTO 6 — standard | images/photo-6.jpeg -->
+        <img src="images/photo-6.jpeg" alt="Anı 6" />
+        <figcaption>
+          <!-- EDIT: CAPTION 6 -->
+          Sokakların bizim olduğu o gün.
+        </figcaption>
+      </figure>
+
+      <figure class="tile reveal">
+        <!-- EDIT: GALLERY PHOTO 7 — standard | images/photo-7.jpeg -->
+        <img src="images/photo-7.jpeg" alt="Anı 7" />
+        <figcaption>
+          <!-- EDIT: CAPTION 7 -->
+          Bir kahkahanı yakaladığım kare.
+        </figcaption>
+      </figure>
+
+      <figure class="tile tile--tall reveal">
+        <!-- EDIT: GALLERY PHOTO 8 — tall portrait | images/photo-8.jpeg -->
+        <img src="images/photo-8.jpeg" alt="Anı 8" />
+        <figcaption>
+          <!-- EDIT: CAPTION 8 -->
+          Sessizliğimizin en güzel hali.
+        </figcaption>
+      </figure>
+
+      <figure class="tile tile--wide reveal">
+        <!-- EDIT: GALLERY PHOTO 9 — wide panorama | images/photo-9.jpeg -->
+        <img src="images/photo-9.jpeg" alt="Anı 9" />
+        <figcaption>
+          <!-- EDIT: CAPTION 9 -->
+          Şehir bizimken, biz birbirimizin.
+        </figcaption>
+      </figure>
+
+      <figure class="tile reveal">
+        <!-- EDIT: GALLERY PHOTO 10 — standard | images/photo-10.jpeg -->
+        <img src="images/photo-10.jpeg" alt="Anı 10" />
+        <figcaption>
+          <!-- EDIT: CAPTION 10 -->
+          Ve bir ömür gibi gelen bir ay.
+        </figcaption>
+      </figure>
+
+    </div>
+
+    <!-- Tüm 68 fotoğrafa giden köprü -->
+    <div class="gallery-more reveal">
+      <a class="more-link" href="anilar.html" aria-label="Tüm 68 anı fotoğrafını gör">
+        <span>Tüm Anıları Gör</span>
+        <span class="more-arrow" aria-hidden="true">→</span>
+        <span class="more-count">68 kare</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ TIMELINE ============ -->
+  <section id="timeline" class="section timeline">
+    <header class="section-head reveal">
+      <p class="overline">Bir Ayın Yolu</p>
+      <h2>Zaman Çizgimiz</h2>
+      <p class="section-sub">Otuz günü işaretleyen küçük duraklar...</p>
+    </header>
+
+    <ol class="timeline-track">
+
+      <li class="milestone reveal">
+        <span class="milestone-icon milestone-icon--dot" aria-hidden="true"></span>
+        <p class="milestone-date">
+          <!-- EDIT: TIMELINE DATE 1 — format "DD Ay" (e.g. "20 Mart") -->
+          20 Mart
+        </p>
+        <h3 class="milestone-title">
+          <!-- EDIT: TIMELINE TITLE 1 — 2–4 words (e.g. "İlk kahvemiz") -->
+          İlk Bakış
+        </h3>
+        <p class="milestone-desc">
+          <!-- EDIT: TIMELINE DESC 1 — one short Turkish line -->
+          Kalbim ne olduğunu anlamadan çoktan sana çevrilmişti.
+        </p>
+      </li>
+
+      <li class="milestone reveal">
+        <span class="milestone-icon milestone-icon--heart" aria-hidden="true"></span>
+        <p class="milestone-date">
+          <!-- EDIT: TIMELINE DATE 2 -->
+          27 Mart
+        </p>
+        <h3 class="milestone-title">
+          <!-- EDIT: TIMELINE TITLE 2 -->
+          İlk Kahvemiz
+        </h3>
+        <p class="milestone-desc">
+          <!-- EDIT: TIMELINE DESC 2 -->
+          O fincanın yanında saatler bir nefese sığdı.
+        </p>
+      </li>
+
+      <li class="milestone reveal">
+        <span class="milestone-icon milestone-icon--diamond" aria-hidden="true"></span>
+        <p class="milestone-date">
+          <!-- EDIT: TIMELINE DATE 3 -->
+          5 Nisan
+        </p>
+        <h3 class="milestone-title">
+          <!-- EDIT: TIMELINE TITLE 3 -->
+          O Yağmurlu Akşam
+        </h3>
+        <p class="milestone-desc">
+          <!-- EDIT: TIMELINE DESC 3 -->
+          Şehir ıslandı; biz birbirimize sığındık.
+        </p>
+      </li>
+
+      <li class="milestone reveal">
+        <span class="milestone-icon milestone-icon--ring" aria-hidden="true"></span>
+        <p class="milestone-date">
+          <!-- EDIT: TIMELINE DATE 4 -->
+          14 Nisan
+        </p>
+        <h3 class="milestone-title">
+          <!-- EDIT: TIMELINE TITLE 4 -->
+          İlk "Seni Seviyorum"
+        </h3>
+        <p class="milestone-desc">
+          <!-- EDIT: TIMELINE DESC 4 -->
+          Üç kelime söyledim, dünyam onlarla yeniden kuruldu.
+        </p>
+      </li>
+
+      <li class="milestone reveal">
+        <span class="milestone-icon milestone-icon--star" aria-hidden="true"></span>
+        <p class="milestone-date">
+          <!-- EDIT: TIMELINE DATE 5 -->
+          20 Nisan
+        </p>
+        <h3 class="milestone-title">
+          <!-- EDIT: TIMELINE TITLE 5 -->
+          Bir Ay
+        </h3>
+        <p class="milestone-desc">
+          <!-- EDIT: TIMELINE DESC 5 -->
+          Otuz gün; ve sanki seninle hep vardım.
+        </p>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ============ MEMORIES ============ -->
+  <section id="memories" class="section memories">
+    <header class="section-head reveal">
+      <p class="overline">Bölüm II</p>
+      <h2>Hatıralarımız</h2>
+      <p class="section-sub">Kalbimde sakladığım üç küçük hazine.</p>
+    </header>
+
+    <div class="cards">
+
+      <article class="card reveal">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9z" />
+          </svg>
+        </div>
+        <h3>
+          <!--
+            EDIT: MEMORY 1 TITLE
+            Length:  2–4 Turkish words. Title case.
+            Example: İlk Karşılaşma  |  İlk Mesaj  |  O Tren
+          -->
+          İlk Karşılaşma
+        </h3>
+        <p>
+          <!--
+            EDIT: MEMORY 1 STORY
+            Length:  2–4 sentences in Turkish. Warm, intimate, present-tense feeling.
+            Tone:    Like a paragraph from a love letter — not a journal report.
+          -->
+          Seni ilk gördüğüm an, dünya bir anlığına sustu. Sanki kalbim
+          ne zamandır seni beklediğini ancak o saniyede hatırladı.
+          O bakış, bütün yalnızlığımı bir kalemde sildi.
+        </p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M3 12h4l3-8 4 16 3-8h4" />
+          </svg>
+        </div>
+        <h3>
+          <!--
+            EDIT: MEMORY 2 TITLE
+            Example: O İlk Gece  |  Sahil Yürüyüşü  |  İlk Kahve
+          -->
+          O İlk Gece
+        </h3>
+        <p>
+          <!--
+            EDIT: MEMORY 2 STORY
+            Length:  2–4 sentences in Turkish. Sensory details work well
+                     (a sound, a smell, a small gesture).
+          -->
+          Saatlerce konuştuk, susmadık, susmak istemedik. Sözler bittiğinde
+          gülüşlerimiz konuştu. O gece anladım ki seninle her sessizlik,
+          bir başka şehirden gelen sıcak bir mektup gibi.
+        </p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M12 2l2.39 4.84L20 8l-4 3.9.94 5.5L12 14.77 7.06 17.4 8 11.9 4 8l5.61-1.16L12 2z" />
+          </svg>
+        </div>
+        <h3>
+          <!--
+            EDIT: MEMORY 3 TITLE
+            Example: Bir Ay Sonra  |  Bugün  |  Şimdi
+          -->
+          Bir Ay Sonra
+        </h3>
+        <p>
+          <!--
+            EDIT: MEMORY 3 STORY
+            Length:  2–4 sentences in Turkish. End on something that points
+                     forward — what this month has become / promised.
+          -->
+          Otuz gün geçti ama sanki seninle hep vardım. Sabahların ışığı
+          artık senin adınla doğuyor, geceler senin sesinle uyuyor.
+          Bu bir ay, bana bir ömrün nasıl başladığını öğretti.
+        </p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ POEMS ============ -->
+  <section id="poems" class="section poems">
+    <header class="section-head reveal">
+      <p class="overline">Bölüm III</p>
+      <h2>Şiirlerin Diliyle</h2>
+      <p class="section-sub">Söyleyemediklerimi onlar söylesin...</p>
+    </header>
+
+    <div class="poem-column">
+
+      <!-- ============ POEM 1 — left aligned ============ -->
+      <article class="poem poem--left reveal">
+        <div class="poem-ornament">❦</div>
+        <p class="poem-body">
+          Uyuyorsun;<br />
+          saat odanın bir köşesinde fısıltıyla nefes alıyor,<br />
+          perde, rüzgârla dua eder gibi salınıyor —<br />
+          ve ben, bir ay önce hiç bilmediğim bir dilde,<br />
+          ilk defa "ev" kelimesini öğreniyorum<br />
+          senin yastığının kıvrımında.
+        </p>
+        <cite class="poem-cite">— Nâzım Hikmet'in izinden, bir ay sonra</cite>
+      </article>
+
+      <hr class="poem-sep" aria-hidden="true" />
+
+      <!-- ============ POEM 2 — right aligned ============ -->
+      <article class="poem poem--right reveal">
+        <div class="poem-ornament">❦</div>
+        <p class="poem-body">
+          Otuz gün saydım; parmaklarımda izi kaldı,<br />
+          Bir adı söyler gibi söyledim her sabah seni;<br />
+          Takvime değil, yüreğime çentik attım —<br />
+          Gelmediğin saniyelerin yerine.
+        </p>
+        <cite class="poem-cite">— Cahit Sıtkı'nın gölgesinden</cite>
+      </article>
+
+      <hr class="poem-sep" aria-hidden="true" />
+
+      <!-- ============ POEM 3 — left aligned (original literary fragment) ============ -->
+      <article class="poem poem--left reveal">
+        <div class="poem-ornament">❦</div>
+        <p class="poem-body">
+          Onu sevdiğimi anladığım an,<br />
+          kalbimin bir başkasının adıyla<br />
+          saat tuttuğunu fark ettim.
+        </p>
+        <cite class="poem-cite">— İsimsiz bir romandan</cite>
+      </article>
+
+      <hr class="poem-sep" aria-hidden="true" />
+
+      <!-- ============ POEM 4 — right aligned (original aphorism) ============ -->
+      <article class="poem poem--right reveal">
+        <div class="poem-ornament">❦</div>
+        <p class="poem-body">
+          Aşk, iki kalbin aynı sessizliği paylaşabilmesidir;<br />
+          çünkü konuşan kelimeler değil,<br />
+          yan yana atan nabızlardır.
+        </p>
+        <cite class="poem-cite">— Bu sayfanın yazarından</cite>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ LETTER ============ -->
+  <section id="letter" class="section letter">
+    <header class="section-head reveal">
+      <p class="overline">Bölüm IV</p>
+      <h2>Sana Bir Mektup</h2>
+      <p class="section-sub">Kâğıdın üstüne döktüğüm kalbim...</p>
+    </header>
+
+    <article class="paper reveal">
+      <div class="paper-inner">
+        <!--
+          EDIT: LETTER SALUTATION
+          What:    The opening greeting at the top of the letter, handwritten style.
+          Example: Sevgili Ebru,  |  Canım Ebru'm,  |  Aşkım,
+        -->
+        <p class="salutation">Sevgili Ebru,</p>
+
+        <p>
+          <!--
+            EDIT: LETTER — PARAGRAPH 1 (the opening)
+            What:    Set the scene. Why you're writing today.
+            Length:  3–5 sentences in Turkish.
+            Tip:     Reference the one-month milestone.
+          -->
+          Bugün tam bir ay oldu. Otuz gün önce hayatıma girdiğinde,
+          dünyanın bana ne kadar büyük bir hediye verdiğini henüz
+          bilmiyordum. Şimdi biliyorum: Sen, benim en sessiz
+          duamın en güzel cevabısın.
+        </p>
+
+        <p>
+          <!--
+            EDIT: LETTER — PARAGRAPH 2 (what she means to you)
+            What:    Specifics. A gesture, a sound, a habit you love about her.
+            Length:  3–5 sentences in Turkish.
+          -->
+          Gülüşün, sabah kahvemden daha sıcak; sesin, en sevdiğim
+          şarkıdan daha tanıdık. Seninle konuştuğumda zaman uzuyor,
+          sustuğumda bile yanımdaymışsın gibi hissediyorum.
+          Bir ayda bir ömür yaşadım seninle.
+        </p>
+
+        <p>
+          <!--
+            EDIT: LETTER — PARAGRAPH 3 (a promise)
+            What:    A small, specific promise to her.
+            Length:  3–5 sentences in Turkish.
+          -->
+          Sana söz veriyorum: Her sabah seni biraz daha çok seveceğim.
+          Her gece, gökyüzünde bir yıldız sayacağım — birini sana,
+          birini bize, birini de bu güzel başlangıca.
+        </p>
+
+        <p>
+          <!--
+            EDIT: LETTER — PARAGRAPH 4 (the closing thought)
+            What:    Look forward. What this month becomes.
+            Length:  2–4 sentences in Turkish.
+          -->
+          Bu bir ay, sadece bir başlangıç. Önümüzde sayısız mevsim,
+          sayısız sabah, sayısız "seni seviyorum" var. Ve ben hepsini,
+          tek tek, seninle yaşamak istiyorum.
+        </p>
+
+        <p class="signoff">
+          <!--
+            EDIT: LETTER SIGN-OFF LINE
+            Example: Sonsuz sevgiyle,  |  Seni çok seven,  |  Hep senin,
+          -->
+          Sonsuz sevgiyle,<br />
+          <!--
+            EDIT: LETTER SIGNATURE
+            What:    Your name as it should appear, rendered in cursive script.
+            Example: Furkan
+          -->
+          <span class="signature">Furkan</span>
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer id="footer" class="section footer">
+    <div class="footer-inner reveal">
+      <div class="heart" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9z" />
+        </svg>
+      </div>
+      <p class="footer-line">— Bir ay, bir ömür gibi —</p>
+      <!--
+        EDIT: ANNIVERSARY DATE
+        What:    Exact date of the one-month anniversary, Turkish format.
+        Format:  "DD Ay YYYY"  (e.g. 23 Nisan 2026, 23 Mayıs 2026)
+        Months:  Ocak, Şubat, Mart, Nisan, Mayıs, Haziran,
+                 Temmuz, Ağustos, Eylül, Ekim, Kasım, Aralık
+      -->
+      <p class="footer-date">23 Nisan 2026</p>
+      <p class="footer-tiny">F &amp; E</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
