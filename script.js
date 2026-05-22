@@ -1,15 +1,82 @@
 // ============================================
 // BİR AY — Ebru'ya
-// Reveal on scroll + side-nav active state
+// Hearts generator + page loader + reveal-on-scroll
 // ============================================
 
 (function () {
   "use strict";
 
-  // ---------- Page loader: hold body locked, then fade ----------
-  // The CSS draws the rose over ~1.8s; we give it a beat to settle (total ~2s)
-  // then fade the overlay out. If the page is taking longer to load, we still
-  // wait for the window 'load' event before starting the fade.
+  /* ================================================================
+     1. GLOBAL FLOATING HEARTS — populate #hearts-bg with 35 hearts.
+        Random sizes, colors, durations, delays (negative so they're
+        already mid-flight on page load — NO empty screen).
+     ================================================================ */
+  function createHearts() {
+    const container = document.getElementById("hearts-bg");
+    if (!container) {
+      console.warn("[hearts] #hearts-bg not found in DOM");
+      return;
+    }
+
+    const COLORS = [
+      "rgba(212, 168, 83, 0.22)",   // gold
+      "rgba(201, 149, 106, 0.20)",  // amber
+      "rgba(139, 26, 58, 0.28)",    // deep rose
+      "rgba(255, 182, 193, 0.18)"   // soft pink
+    ];
+
+    const COUNT = 35;
+    const rand = (min, max) => Math.random() * (max - min) + min;
+
+    // Build all 35 hearts in a DocumentFragment for one DOM write
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < COUNT; i++) {
+      const span = document.createElement("span");
+      span.className = "heart";
+      span.innerHTML = "&#9829;"; // ♥
+
+      const left      = rand(0, 98);                                // 0% to 98%
+      const fontSize  = rand(0.6, 2.4).toFixed(2);                  // 0.6rem to 2.4rem
+      const color     = COLORS[Math.floor(Math.random() * COLORS.length)];
+      const duration  = rand(14, 32).toFixed(2);                    // 14s to 32s
+      const delay     = (-rand(0, 30)).toFixed(2);                  // -30s to 0s (negative!)
+      const peakOpacity = rand(0.12, 0.28).toFixed(2);              // 0.12 to 0.28
+
+      span.style.left              = left + "%";
+      span.style.fontSize          = fontSize + "rem";
+      span.style.color             = color;
+      span.style.animationDuration = duration + "s";
+      span.style.animationDelay    = delay + "s";
+      span.style.setProperty("--heart-opacity", peakOpacity);
+
+      frag.appendChild(span);
+    }
+    container.appendChild(frag);
+
+    // Sanity log so you can verify in DevTools console
+    if (window.console && console.info) {
+      console.info(
+        "[hearts] generated",
+        container.querySelectorAll(".heart").length,
+        "hearts (expected 35)"
+      );
+    }
+  }
+
+  // Hearts use vh units → already responsive. Resize listener is a no-op
+  // by design but kept so future tweaks have an obvious hook.
+  window.addEventListener("resize", function () { /* no-op */ });
+
+  // Run as soon as DOM is parsed (don't wait for fonts/images)
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", createHearts);
+  } else {
+    createHearts();
+  }
+
+  /* ================================================================
+     2. PAGE LOADER — hold body locked, then fade
+     ================================================================ */
   document.body.classList.add("is-loading");
 
   const loader = document.getElementById("loader");
@@ -18,7 +85,6 @@
     if (!loader || loader.classList.contains("is-hidden")) return;
     loader.classList.add("is-hidden");
     document.body.classList.remove("is-loading");
-    // remove from the DOM once the fade transition ends (clean accessibility tree)
     loader.addEventListener(
       "transitionend",
       () => loader.parentNode && loader.parentNode.removeChild(loader),
@@ -26,7 +92,6 @@
     );
   }
 
-  // Earliest-possible hide: window 'load' AND minimum 2s have both passed.
   let loadedFired = false;
   let minTimeElapsed = false;
   const tryHide = () => { if (loadedFired && minTimeElapsed) hideLoader(); };
@@ -34,7 +99,7 @@
   window.addEventListener("load", () => { loadedFired = true; tryHide(); });
   setTimeout(() => { minTimeElapsed = true; tryHide(); }, 2000);
 
-  // Safety net: if 'load' never fires (e.g. a missing font CDN), bail at 4.5s
+  // Safety net: hard-hide at 4.5s if 'load' never fires
   setTimeout(hideLoader, 4500);
 
   // Respect reduced-motion: snap-hide immediately
@@ -42,7 +107,9 @@
     setTimeout(hideLoader, 300);
   }
 
-  // ---------- Reveal on scroll ----------
+  /* ================================================================
+     3. REVEAL ON SCROLL
+     ================================================================ */
   const reveals = document.querySelectorAll(".reveal");
 
   if ("IntersectionObserver" in window) {
@@ -62,7 +129,9 @@
     reveals.forEach((el) => el.classList.add("in-view"));
   }
 
-  // ---------- Memory cards: staggered scroll-triggered fade-in ----------
+  /* ================================================================
+     4. MEMORY CARDS — staggered fade-in
+     ================================================================ */
   const memoryCards = document.querySelectorAll(".memories .card");
   if ("IntersectionObserver" in window && memoryCards.length) {
     const cardIo = new IntersectionObserver(
@@ -70,7 +139,6 @@
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const idx = Array.prototype.indexOf.call(memoryCards, entry.target);
-            // gentle stagger so each memory unfolds after the last
             entry.target.style.transitionDelay = (idx * 220) + "ms";
             entry.target.classList.add("in-view");
             cardIo.unobserve(entry.target);
@@ -82,9 +150,11 @@
     memoryCards.forEach((c) => cardIo.observe(c));
   }
 
-  // ---------- Side-nav active dot ----------
-  const sections = document.querySelectorAll(".section");
-  const dots = document.querySelectorAll(".side-nav .dot");
+  /* ================================================================
+     5. SIDE-NAV ACTIVE DOT
+     ================================================================ */
+  const sections = document.querySelectorAll("section, footer.section");
+  const dots = document.querySelectorAll(".side-nav .dot, .nav-dots .dot");
 
   if ("IntersectionObserver" in window && dots.length) {
     const navIo = new IntersectionObserver(
@@ -103,9 +173,23 @@
     sections.forEach((s) => navIo.observe(s));
   }
 
-  // ---------- Graceful image fallback ----------
-  // If a photo placeholder is missing, paint a soft burgundy gradient with a script monogram
-  // so the layout still feels intentional before real photos are dropped in.
+  /* ================================================================
+     6. SMOOTH SCROLL FOR NAV LINKS (older browsers)
+     ================================================================ */
+  document.querySelectorAll('.side-nav a[href^="#"], .nav-dots a[href^="#"]').forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const id = a.getAttribute("href");
+      const target = document.querySelector(id);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
+
+  /* ================================================================
+     7. GALLERY IMAGE FALLBACK — burgundy "F & E" monogram if missing
+     ================================================================ */
   document.querySelectorAll(".tile img").forEach((img) => {
     img.addEventListener("error", () => {
       const tile = img.closest(".tile");
@@ -128,33 +212,60 @@
       tile.prepend(ph);
     });
   });
+  /* ================================================================
+     8. GALLERY MODAL — lightbox for #gallery .tile clicks
+     Only targets tiles inside #gallery section (not anilar page).
+     ================================================================ */
+  const galleryModal = document.getElementById("gallery-modal");
+  const galleryModalImg = document.getElementById("gallery-modal-img");
+  const galleryModalQuote = document.getElementById("gallery-modal-quote");
+  const galleryModalClose = document.getElementById("gallery-modal-close");
 
-  // ---------- Smooth scroll for nav dots (older browsers) ----------
-  document.querySelectorAll('.side-nav a[href^="#"]').forEach((a) => {
-    a.addEventListener("click", (e) => {
-      const id = a.getAttribute("href");
-      const target = document.querySelector(id);
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (galleryModal) {
+    // Open modal when a tile in #gallery is clicked
+    const gallerySection = document.getElementById("gallery");
+    if (gallerySection) {
+      gallerySection.querySelectorAll(".tile").forEach(function (tile) {
+        tile.addEventListener("click", function () {
+          const img = tile.querySelector("img");
+          const caption = tile.querySelector("figcaption");
+          if (!img) return;
+
+          galleryModalImg.src = img.src;
+          galleryModalImg.alt = img.alt || "";
+          galleryModalQuote.textContent = caption ? caption.textContent.trim() : "";
+
+          galleryModal.classList.add("is-active");
+          galleryModal.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+        });
+      });
+    }
+
+    // Close helpers
+    function closeGalleryModal() {
+      galleryModal.classList.remove("is-active");
+      galleryModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    // Close on X button
+    if (galleryModalClose) {
+      galleryModalClose.addEventListener("click", closeGalleryModal);
+    }
+
+    // Close on backdrop (outside content) click
+    galleryModal.addEventListener("click", function (e) {
+      if (e.target === galleryModal) {
+        closeGalleryModal();
       }
     });
-  });
 
-  // ---------- Subtle parallax on hero quote ----------
-  const hero = document.getElementById("hero");
-  const heroQuote = document.querySelector(".hero-quote");
-  if (hero && heroQuote && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    window.addEventListener(
-      "scroll",
-      () => {
-        const y = window.scrollY;
-        if (y < window.innerHeight) {
-          heroQuote.style.transform = `translateY(${y * 0.15}px)`;
-          heroQuote.style.opacity = String(Math.max(0, 1 - y / (window.innerHeight * 0.7)));
-        }
-      },
-      { passive: true }
-    );
+    // Close on Escape key
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && galleryModal.classList.contains("is-active")) {
+        closeGalleryModal();
+      }
+    });
   }
 })();
