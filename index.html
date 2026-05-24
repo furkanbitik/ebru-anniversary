@@ -32,6 +32,34 @@
 </head>
 <body>
 
+  <!-- ============ PASSWORD ENTRY GATE ============ -->
+  <div id="password-gate" class="password-gate" aria-modal="true" role="dialog">
+    <div class="password-box" id="password-box">
+      <div class="password-heart">♥</div>
+      <h2>Küçük Bir Sır...</h2>
+      <p>Bu özel sayfaya erişmek için şifreyi gir sevgilim... ❤️</p>
+      <form id="password-form" autocomplete="off">
+        <input type="password" id="site-password" placeholder="Şifre" aria-label="Şifre" required />
+        <button type="submit">Giriş Yap</button>
+      </form>
+      <p id="password-error" class="password-error" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <!-- Dynamic Heart Rain Overlay -->
+  <div id="heart-rain" aria-hidden="true"></div>
+
+  <!-- Inline Auth Check to prevent flash of content -->
+  <script>
+    (function() {
+      if (sessionStorage.getItem('ebru_auth') === 'true') {
+        document.getElementById('password-gate').style.display = 'none';
+      } else {
+        document.body.classList.add('is-locked');
+      }
+    })();
+  </script>
+
   <!-- ============ PAGE LOADER (rose SVG draws itself, then fades) ============ -->
   <div id="loader" class="loader" role="status" aria-live="polite" aria-label="Sayfa yükleniyor">
     <svg class="loader-rose" viewBox="0 0 120 120" aria-hidden="true">
@@ -293,11 +321,19 @@
 
       <figure class="tile reveal">
         <!-- EDIT: GALLERY PHOTO 10 — standard | images/photo-10.jpeg -->
-        <img src="images/photo-72.jpeg" alt="Anı 10" />
+        <img src="images/photo-73.jpeg" alt="Anı 10" />
         <figcaption>
           <!-- EDIT: CAPTION 10 -->
-          İşte 22 Mayıs. 1 ayımız doldu diye güzel bir gün geçirdik. İşte 1 ayınn mutluluğuyla dolu bir öpücük. 
-          Ayrıca 22 Mayıs bana aşık olduğun gün
+          21 Mayıs konserinde, seninle şarkı söylemek, o anın büyüsü... Her şey çok güzeldi.
+        </figcaption>
+      </figure>
+
+      <figure class="tile reveal">
+        <!-- EDIT: GALLERY PHOTO 10 — standard | images/photo-10.jpeg -->
+        <img src="images/photo-70.jpeg" alt="Anı 10" />
+        <figcaption>
+          <!-- EDIT: CAPTION 10 -->
+          22 Mayıs Ebru ve Furkan'ın 1 aylık kutlaması. Ebru'nun ilk aşık olduğu o an...
         </figcaption>
       </figure>
 
@@ -365,6 +401,13 @@
         <p class="milestone-date"><!-- EDIT: TIMELINE DATE 5 -->21 Mayıs</p>
         <h3 class="milestone-title"><!-- EDIT: TIMELINE TITLE 5 -->Senfoni</h3>
         <p class="milestone-desc"><!-- EDIT: TIMELINE DESC 5 -->Sana bakarak şarkı söylemek ayrı bir duyguydu.</p>
+      </li>
+
+      <li class="milestone reveal">
+        <span class="milestone-icon milestone-icon--star" aria-hidden="true"></span>
+        <p class="milestone-date"><!-- EDIT: TIMELINE DATE 5 -->22 Mayıs</p>
+        <h3 class="milestone-title"><!-- EDIT: TIMELINE TITLE 5 -->1 Ay Buluşması</h3>
+        <p class="milestone-desc"><!-- EDIT: TIMELINE DESC 5 -->Harika bir gün, senden aşık oldum lafını duymak...</p>
       </li>
 
     </ol>

@@ -268,4 +268,105 @@
       }
     });
   }
+
+  /* ================================================================
+     9. PASSWORD GATE & DENSE HEART RAIN
+     ================================================================ */
+  function generateHeartRain() {
+    const container = document.getElementById("heart-rain");
+    if (!container) return;
+
+    // Use a rich palette of red, soft pinks, and gold/rose colors
+    const COLORS = [
+      "rgba(201, 138, 152, 0.22)",  // dusty rose
+      "rgba(232, 197, 204, 0.26)",  // pale rose
+      "rgba(139, 26, 58, 0.24)",    // deep rose
+      "rgba(212, 168, 83, 0.20)"    // soft gold
+    ];
+
+    const COUNT = 60; // Dense rain count
+    const rand = (min, max) => Math.random() * (max - min) + min;
+
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < COUNT; i++) {
+      const span = document.createElement("span");
+      span.className = "rain-heart";
+      span.innerHTML = "&#9829;"; // ♥
+
+      const left = rand(0, 98);
+      const fontSize = rand(0.8, 2.2).toFixed(2);
+      const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+      const duration = rand(8, 18).toFixed(2); // faster/slower falls
+      const delay = (-rand(0, 15)).toFixed(2); // negative so already falling on load
+      const peakOpacity = rand(0.12, 0.28).toFixed(2);
+      const drift = rand(-35, 35).toFixed(0); // left-to-right sway amount
+      const rotation = rand(180, 540).toFixed(0); // continuous rotation
+
+      span.style.left = left + "%";
+      span.style.fontSize = fontSize + "rem";
+      span.style.color = color;
+      span.style.animationDuration = duration + "s";
+      span.style.animationDelay = delay + "s";
+      span.style.setProperty("--heart-opacity", peakOpacity);
+      span.style.setProperty("--drift", drift + "px");
+      span.style.setProperty("--rotation", rotation + "deg");
+
+      frag.appendChild(span);
+    }
+    container.appendChild(frag);
+  }
+
+  // Handle password entry
+  const gate = document.getElementById("password-gate");
+  const form = document.getElementById("password-form");
+  const input = document.getElementById("site-password");
+  const error = document.getElementById("password-error");
+  const box = document.getElementById("password-box");
+
+  if (form) {
+    // If already logged in, we immediately hide the gate and clear class lock
+    if (sessionStorage.getItem("ebru_auth") === "true") {
+      if (gate) {
+        gate.style.display = "none";
+      }
+      document.body.classList.remove("is-locked");
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // ==========================================
+      // EDIT: PASSWORD CONFIGURATION
+      // Change 'ebru' below to change your password
+      // ==========================================
+      const CORRECT_PASSWORD = "2304eeff";
+
+      if (input.value.trim().toLowerCase() === CORRECT_PASSWORD.toLowerCase()) {
+        sessionStorage.setItem("ebru_auth", "true");
+        gate.classList.add("fade-out");
+        document.body.classList.remove("is-locked");
+        
+        // Remove gate from DOM after transition completes to save resources
+        setTimeout(() => {
+          if (gate && gate.parentNode) {
+            gate.parentNode.removeChild(gate);
+          }
+        }, 600);
+      } else {
+        error.textContent = "Hatalı şifre, sevgilim. Tekrar dener misin? ❤️";
+        error.classList.add("show");
+        box.classList.add("shake");
+        input.value = "";
+        input.focus();
+
+        // Remove shake class after animation ends
+        setTimeout(() => {
+          box.classList.remove("shake");
+        }, 500);
+      }
+    });
+  }
+
+  // Initialize features
+  generateHeartRain();
 })();
