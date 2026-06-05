@@ -32,6 +32,34 @@
 </head>
 <body>
 
+  <!-- ============ PASSWORD ENTRY GATE ============ -->
+  <div id="password-gate" class="password-gate" aria-modal="true" role="dialog">
+    <div class="password-box" id="password-box">
+      <div class="password-heart">♥</div>
+      <h2>Küçük Bir Sır...</h2>
+      <p>Bu özel sayfaya erişmek için şifreyi gir sevgilim... ❤️</p>
+      <form id="password-form" autocomplete="off">
+        <input type="password" id="site-password" placeholder="Şifre" aria-label="Şifre" required />
+        <button type="submit">Giriş Yap</button>
+      </form>
+      <p id="password-error" class="password-error" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <!-- Dynamic Heart Rain Overlay -->
+  <div id="heart-rain" aria-hidden="true"></div>
+
+  <!-- Inline Auth Check to prevent flash of content -->
+  <script>
+    (function() {
+      if (sessionStorage.getItem('ebru_auth') === 'true') {
+        document.getElementById('password-gate').style.display = 'none';
+      } else {
+        document.body.classList.add('is-locked');
+      }
+    })();
+  </script>
+
   <!-- ============ PAGE LOADER (rose SVG draws itself, then fades) ============ -->
   <div id="loader" class="loader" role="status" aria-live="polite" aria-label="Sayfa yükleniyor">
     <svg class="loader-rose" viewBox="0 0 120 120" aria-hidden="true">
@@ -159,7 +187,7 @@
         File: images/photo-29.jpeg (or any portrait from 1-68)
         Sizing: height: 80vh, width: auto. NEVER cropped (object-fit: contain).
       -->
-      <img src="images/photo-29.jpeg" alt="Furkan ve Ebru'nun portresi" />
+      <img src="images/thumbs/photo-29.webp" data-full="images/photo-29.jpeg" alt="Furkan ve Ebru'nun portresi" />
     </div>
 
     <div class="hero-right">
@@ -202,7 +230,7 @@
 
       <figure class="tile tile--tall reveal">
         <!-- EDIT: GALLERY PHOTO 1 — tall portrait | images/photo-1.jpeg -->
-        <img src="images/photo-54.jpeg" alt="Anı 1" />
+        <img loading="lazy" src="images/thumbs/photo-54.webp" data-full="images/photo-54.jpeg" alt="Anı 1" />
         <figcaption>
           <!-- EDIT: CAPTION 1 -->
           O yağmurlu günde, şemsiyenin altında birbirimize sığındığımız an. En tatlı en sevdiğimiz anlardan biriydi. En harika da fotoğrafımız.
@@ -211,8 +239,43 @@
       </figure>
 
       <figure class="tile reveal">
+        <!-- EDIT: GALLERY PHOTO 10 — standard | images/photo-10.jpeg -->
+        <img loading="lazy" src="images/thumbs/photo-75.webp" data-full="images/photo-75.jpg" alt="Anı 10" />
+        <figcaption>
+          Aşkın her anını yaşadığımız bir gün daha. Dünyanın en güzel gülüşü senin gülüşün.
+        </figcaption>
+      </figure>
+
+      <figure class="tile reveal">
+        <!-- EDIT: GALLERY PHOTO 10 — standard | images/photo-10.jpeg -->
+        <img loading="lazy" src="images/thumbs/photo-81.webp" data-full="images/photo-81.jpg" alt="Anı 10" />
+        <figcaption>
+          <!-- EDIT: CAPTION 10 -->
+          Alişveriş testinde başarılı olup yüzüm gülerken :))) Babana benzetmen çok mutlu etmişti.
+        </figcaption>
+      </figure>
+
+      <figure class="tile reveal">
+        <!-- EDIT: GALLERY PHOTO 10 — standard | images/photo-10.jpeg -->
+        <img loading="lazy" src="images/thumbs/photo-84.webp" data-full="images/photo-84.jpg" alt="Anı 10" />
+        <figcaption>
+          <!-- EDIT: CAPTION 10 -->
+          Bu fotoğrafı çok seviyorum çünkü o günün ne kadar güzel geçtiğini hatırlatıyor bana.
+        </figcaption>
+      </figure>
+
+      <figure class="tile reveal">
+        <!-- EDIT: GALLERY PHOTO 10 — standard | images/photo-10.jpeg -->
+        <img loading="lazy" src="images/thumbs/photo-88.webp" data-full="images/photo-88.jpg" alt="Anı 10" />
+        <figcaption>
+          <!-- EDIT: CAPTION 10 -->
+          Sabah buluşmalarımız her biri ayrı güzel
+        </figcaption>
+      </figure>
+
+      <figure class="tile reveal">
         <!-- EDIT: GALLERY PHOTO 2 — standard | images/photo-2.jpeg -->
-        <img src="images/photo-68.jpeg" alt="Anı 2" />
+        <img loading="lazy" src="images/thumbs/photo-68.webp" data-full="images/photo-68.jpeg" alt="Anı 2" />
         <figcaption>
           <!-- EDIT: CAPTION 2 -->
           Piknikte, güneşin altında, sadece ikimiz ve o anın büyüsü.
@@ -221,7 +284,7 @@
 
       <figure class="tile reveal">
         <!-- EDIT: GALLERY PHOTO 3 — standard | images/photo-3.jpeg -->
-        <img src="images/photo-67.jpeg" alt="Anı 3" />
+        <img loading="lazy" src="images/thumbs/photo-67.webp" data-full="images/photo-67.jpeg" alt="Anı 3" />
         <figcaption>
           <!-- EDIT: CAPTION 3 -->
           En sevdiğimiz kafede, kahvelerimizi yudumlarken, senin o öpüşün aklımda...
@@ -230,7 +293,7 @@
 
       <figure class="tile tile--wide reveal">
         <!-- EDIT: GALLERY PHOTO 4 — wide panorama | images/photo-4.jpeg -->
-        <img src="images/photo-57.jpeg" alt="Anı 4" />
+        <img loading="lazy" src="images/thumbs/photo-57.webp" data-full="images/photo-57.jpeg" alt="Anı 4" />
         <figcaption>
           <!-- EDIT: CAPTION 4 -->
           Bugünün güzelliği bambaşkaydı, çünkü sen vardın. Şehir bizimdi, biz birbirimizin.
@@ -239,7 +302,7 @@
 
       <figure class="tile tile--tall reveal">
         <!-- EDIT: GALLERY PHOTO 5 — tall portrait | images/photo-5.jpeg -->
-        <img src="images/photo-43.jpeg" alt="Anı 5" />
+        <img loading="lazy" src="images/thumbs/photo-43.webp" data-full="images/photo-43.jpeg" alt="Anı 5" />
         <figcaption>
           <!-- EDIT: CAPTION 5 -->
           İlk günümüz, bakışmamız, gülüşümüz o kadar içten ki, Harika bir gündü, Bakışlarına kurban olduğum.
@@ -248,7 +311,7 @@
 
       <figure class="tile reveal">
         <!-- EDIT: GALLERY PHOTO 6 — standard | images/photo-6.jpeg -->
-        <img src="images/photo-49.jpeg" alt="Anı 6" />
+        <img loading="lazy" src="images/thumbs/photo-49.webp" data-full="images/photo-49.jpeg" alt="Anı 6" />
         <figcaption>
           <!-- EDIT: CAPTION 6 -->
           Okuldaki tatlı anımız. O gün, o an, o tatlılık... Hepsi çok güzel.
@@ -257,7 +320,7 @@
 
       <figure class="tile reveal">
         <!-- EDIT: GALLERY PHOTO 7 — standard | images/photo-7.jpeg -->
-        <img src="images/photo-41.jpeg" alt="Anı 7" />
+        <img loading="lazy" src="images/thumbs/photo-41.webp" data-full="images/photo-41.jpeg" alt="Anı 7" />
         <figcaption>
           <!-- EDIT: CAPTION 7 -->
           İlk günden bir kare daha. O günün büyüsü, o anın sıcaklığı... Hepsi hala içimi ısıtıyor.
@@ -266,7 +329,7 @@
 
       <figure class="tile tile--tall reveal">
         <!-- EDIT: GALLERY PHOTO 8 — tall portrait | images/photo-8.jpeg -->
-        <img src="images/photo-26.jpeg" alt="Anı 8" />
+        <img loading="lazy" src="images/thumbs/photo-26.webp" data-full="images/photo-26.jpeg" alt="Anı 8" />
         <figcaption>
           <!-- EDIT: CAPTION 8 -->
           Şu yanaklarının yanağıma değdiği an ben ben değildim. O an, o his, o sıcaklık...
@@ -275,7 +338,7 @@
 
       <figure class="tile tile--wide reveal">
         <!-- EDIT: GALLERY PHOTO 9 — wide panorama | images/photo-9.jpeg -->
-        <img src="images/photo-20.jpeg" alt="Anı 9" />
+        <img loading="lazy" src="images/thumbs/photo-20.webp" data-full="images/photo-20.jpeg" alt="Anı 9" />
         <figcaption>
           <!-- EDIT: CAPTION 9 -->
           Ne kadar kötü bir gün olmuşsa da, çok güzel atlattık ve sadece sana sarıldığım bu an kaldı aklımda. O an, o güven, o sevgi...
@@ -284,7 +347,7 @@
 
       <figure class="tile reveal">
         <!-- EDIT: GALLERY PHOTO 10 — standard | images/photo-10.jpeg -->
-        <img src="images/photo-30.jpeg" alt="Anı 10" />
+        <img loading="lazy" src="images/thumbs/photo-30.webp" data-full="images/photo-30.jpeg" alt="Anı 10" />
         <figcaption>
           <!-- EDIT: CAPTION 10 -->
           Sarılar içinde beni büyülediğin o an.
@@ -293,31 +356,41 @@
 
       <figure class="tile reveal">
         <!-- EDIT: GALLERY PHOTO 10 — standard | images/photo-10.jpeg -->
-        <img src="images/photo-72.jpeg" alt="Anı 10" />
+        <img loading="lazy" src="images/thumbs/photo-73.webp" data-full="images/photo-73.jpeg" alt="Anı 10" />
         <figcaption>
           <!-- EDIT: CAPTION 10 -->
-          İşte 22 Mayıs. 1 ayımız doldu diye güzel bir gün geçirdik. İşte 1 ayınn mutluluğuyla dolu bir öpücük. 
-          Ayrıca 22 Mayıs bana aşık olduğun gün
+          21 Mayıs konserinde, seninle şarkı söylemek, o anın büyüsü... Her şey çok güzeldi.
         </figcaption>
       </figure>
 
       <figure class="tile reveal">
         <!-- EDIT: GALLERY PHOTO 10 — standard | images/photo-10.jpeg -->
-        <img src="images/photo-32.jpeg" alt="Anı 10" />
+        <img loading="lazy" src="images/thumbs/photo-70.webp" data-full="images/photo-70.jpeg" alt="Anı 10" />
+        <figcaption>
+          <!-- EDIT: CAPTION 10 -->
+          22 Mayıs Ebru ve Furkan'ın 1 aylık kutlaması. Ebru'nun ilk aşık olduğu o an...
+        </figcaption>
+      </figure>
+
+      <figure class="tile reveal">
+        <!-- EDIT: GALLERY PHOTO 10 — standard | images/photo-10.jpeg -->
+        <img loading="lazy" src="images/thumbs/photo-32.webp" data-full="images/photo-32.jpeg" alt="Anı 10" />
         <figcaption>
           <!-- EDIT: CAPTION 10 -->
           Ne güzel gülmüşsün sevgilim. Ben de çok romantik öpmüşüm :)))))
         </figcaption>
       </figure>
 
+
+
     </div>
 
-    <!-- Tüm 68 fotoğrafa giden köprü -->
+    <!-- Tüm 83 fotoğrafa giden köprü -->
     <div class="gallery-more reveal">
       <a class="more-link" href="anilar.html" aria-label="Tüm 68 anı fotoğrafını gör">
         <span>Tüm Anıları Gör</span>
         <span class="more-arrow" aria-hidden="true">→</span>
-        <span class="more-count">68 kare</span>
+        <span class="more-count">83 kare</span>
       </a>
     </div>
   </section>
@@ -365,6 +438,13 @@
         <p class="milestone-date"><!-- EDIT: TIMELINE DATE 5 -->21 Mayıs</p>
         <h3 class="milestone-title"><!-- EDIT: TIMELINE TITLE 5 -->Senfoni</h3>
         <p class="milestone-desc"><!-- EDIT: TIMELINE DESC 5 -->Sana bakarak şarkı söylemek ayrı bir duyguydu.</p>
+      </li>
+
+      <li class="milestone reveal">
+        <span class="milestone-icon milestone-icon--star" aria-hidden="true"></span>
+        <p class="milestone-date"><!-- EDIT: TIMELINE DATE 5 -->22 Mayıs</p>
+        <h3 class="milestone-title"><!-- EDIT: TIMELINE TITLE 5 -->1 Ay Buluşması</h3>
+        <p class="milestone-desc"><!-- EDIT: TIMELINE DESC 5 -->Harika bir gün, senden aşık oldum lafını duymak...</p>
       </li>
 
     </ol>
