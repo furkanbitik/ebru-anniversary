@@ -1,0 +1,19 @@
+name: Cloudflare Workers
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # wrangler.jsonc icindeki assets.directory (./public) yayinlanir.
+      # Derleme adimi yok: proje statik.
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: fc823768e015582d7018af2527541a58
