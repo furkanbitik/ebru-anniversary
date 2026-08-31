@@ -31,6 +31,9 @@
   --sans: "Lato", system-ui, sans-serif;
   --script: "Dancing Script", cursive;
 
+  /* Sabit üst menünün yüksekliği — mobilde menü iki satıra sardığı için artar */
+  --header-h: 62px;
+
   --ease: cubic-bezier(.22,.61,.36,1);
   --ease-hero: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -149,6 +152,8 @@ h1, h2, h3 {
 /* ============ SECTION BASE ============ */
 .section {
   min-height: 100vh;
+  min-height: 100svh;
+  scroll-margin-top: var(--header-h);
   padding: 8rem 2rem;
   display: flex;
   flex-direction: column;
@@ -336,6 +341,8 @@ h1, h2, h3 {
   gap: 14px 50px;
   padding: 60px 50px;
   min-height: 100vh;
+  min-height: 100svh;
+  scroll-margin-top: var(--header-h);
   background:
     radial-gradient(ellipse at 50% 45%, rgba(139,26,58,0.18) 0%, transparent 60%);
 }
@@ -1115,6 +1122,7 @@ h1, h2, h3 {
     radial-gradient(ellipse at top, #3a0d1c 0%, var(--burgundy-deep) 60%, #1a060d 100%);
   background-attachment: fixed;
   min-height: 100vh;
+  min-height: 100svh;
 }
 
 .anilar-top {
@@ -1203,7 +1211,7 @@ h1, h2, h3 {
 .gallery-all .tile img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;   /* kare çerçeve içinde fotoğrafın tamamı görünsün */
   display: block;
   filter: saturate(0.9) brightness(0.88);
   transition: transform 1.2s var(--ease), filter .8s var(--ease);
@@ -1243,10 +1251,16 @@ h1, h2, h3 {
     justify-items: center;
     gap: 1rem;
   }
+  /* Telefonda kare çerçeve zorlanmaz: her fotoğraf kendi oranında,
+     ne kırpılarak ne de yanlarda boşluk bırakarak görünür. */
   .gallery-all .tile {
     width: 100%;
     height: auto;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: auto;
+  }
+  .gallery-all .tile img {
+    height: auto;
+    object-fit: contain;
   }
 }
 
@@ -1268,6 +1282,7 @@ h1, h2, h3 {
 .lightbox img {
   max-width: 96vw;
   max-height: 90vh;
+  max-height: 90svh;
   object-fit: contain;
   box-shadow: 0 40px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(212,168,83,0.3);
 }
@@ -1626,9 +1641,36 @@ body.is-locked {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(ellipse at center, #240710 0%, #0a0205 100%);
+  background-color: #0c0205;
   transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), visibility 0.6s;
   padding: 1.5rem;
+  overflow-x: hidden;
+  overflow-y: auto;      /* yatay telefonda kutu sığmazsa kaydırılabilsin */
+  -webkit-overflow-scrolling: touch;
+}
+
+.password-gate-bg {
+  position: fixed;
+  inset: -30px;
+  background-image: url('images/photo-29.jpeg');
+  background-size: cover;
+  background-position: center 25%;
+  filter: blur(0.3px) brightness(0.78) saturate(1.12);
+  transform: scale(1.05);
+  animation: gateBgZoom 24s infinite alternate ease-in-out;
+  pointer-events: none;
+}
+
+.password-gate-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(38, 8, 18, 0.12) 0%, rgba(10, 2, 5, 0.62) 92%);
+  pointer-events: none;
+}
+
+@keyframes gateBgZoom {
+  0% { transform: scale(1.04) translate(0, 0); }
+  100% { transform: scale(1.14) translate(-15px, -10px); }
 }
 
 .password-gate.fade-out {
@@ -1638,27 +1680,29 @@ body.is-locked {
 }
 
 .password-box {
+  margin: auto;          /* flex ortalamada üstten kırpılmayı önler */
   text-align: center;
   padding: clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 2.5rem);
   max-width: 440px;
   width: 100%;
   border-radius: 8px;
-  border: 1px solid rgba(212, 168, 83, 0.25);
-  background: rgba(26, 12, 16, 0.88);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(212, 168, 83, 0.35);
+  background: rgba(26, 10, 16, 0.85);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
   box-shadow: 
-    0 30px 70px rgba(0, 0, 0, 0.85), 
-    0 0 50px rgba(139, 26, 58, 0.3);
+    0 30px 70px rgba(0, 0, 0, 0.9), 
+    0 0 50px rgba(139, 26, 58, 0.4);
   position: relative;
   overflow: hidden;
+  z-index: 2;
 }
 
 .password-box::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(212, 168, 83, 0.05) 0%, transparent 100%);
+  background: linear-gradient(135deg, rgba(212, 168, 83, 0.08) 0%, transparent 100%);
   pointer-events: none;
 }
 
@@ -1786,3 +1830,1087 @@ body.is-locked {
   animation: gateShake 0.5s ease-in-out;
 }
 
+/* ================================================================
+   SITE HEADER & GLOBAL TOP NAVIGATION
+   ================================================================ */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1500;
+  padding: 0.65rem 1.5rem;
+  padding-top: calc(0.65rem + env(safe-area-inset-top));
+  padding-left: calc(1.5rem + env(safe-area-inset-left));
+  padding-right: calc(1.5rem + env(safe-area-inset-right));
+  background: rgba(18, 6, 11, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(212, 168, 83, 0.2);
+  transition: background 0.3s ease, padding 0.3s ease;
+}
+
+.site-nav-container {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  font-family: var(--script);
+  font-size: 1.85rem;
+  color: var(--gold);
+  text-shadow: 0 0 12px rgba(212, 168, 83, 0.4);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.site-logo:hover {
+  transform: scale(1.04);
+}
+
+.site-logo .heart-icon {
+  color: #ff3b68;
+  font-size: 1.3rem;
+  display: inline-block;
+  animation: logoPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes logoPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.22); }
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 0.2rem 0;
+}
+
+.site-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.site-nav-link {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--rose-pale);
+  text-decoration: none;
+  padding: 0.42rem 0.82rem;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition: all 0.25s var(--ease);
+  position: relative;
+}
+
+.site-nav-link:hover {
+  color: var(--gold);
+  border-color: rgba(212, 168, 83, 0.35);
+  background: rgba(139, 26, 58, 0.28);
+  box-shadow: 0 0 12px rgba(212, 168, 83, 0.18);
+}
+
+.site-nav-link.active {
+  color: var(--burgundy-deep);
+  background: var(--gold);
+  border-color: var(--gold);
+  font-weight: 700;
+  box-shadow: 0 0 16px rgba(212, 168, 83, 0.45);
+}
+
+.site-nav-link.badge-anilar {
+  background: rgba(139, 26, 58, 0.45);
+  border: 1px solid rgba(212, 168, 83, 0.4);
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+.site-nav-link.badge-anilar:hover {
+  background: var(--burgundy-soft);
+  box-shadow: 0 0 15px rgba(212, 168, 83, 0.35);
+}
+
+.site-nav-link.badge-anilar.active {
+  background: var(--gold);
+  color: var(--burgundy-deep);
+}
+
+/* Adjust main heroes for fixed top nav */
+#hero, .anilar-hero {
+  padding-top: clamp(85px, 12vh, 115px) !important;
+}
+
+/* ================================================================
+   HOMEPAGE SPECIFIC STYLES (Aylar Yolculuğu & Kartlar)
+   ================================================================ */
+/* ---- Hero ay sayacı (ay sayfaları + ana sayfa) ---- */
+.hero-counter {
+  margin: 1.1rem 0 1.5rem;
+  line-height: 1.05;
+}
+
+.hero-counter-num {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(3rem, 7vw, 5.2rem);
+  background: linear-gradient(180deg, var(--cream) 0%, var(--gold-pale) 60%, var(--gold-soft) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-counter-unit {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 2vw, 1.55rem);
+  color: var(--rose-dusty);
+  margin-left: 0.4rem;
+}
+
+.hero-counter-sub {
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(232, 197, 204, 0.6);
+  margin-top: 0.55rem;
+}
+
+.home-hero .hero-counter-num {
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+}
+
+.months-section {
+  position: relative;
+  z-index: 2;
+  padding: 6rem 1.5rem;
+}
+
+.months-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1240px;
+  margin: 3rem auto 0;
+}
+
+.month-card {
+  background: rgba(28, 10, 17, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(212, 168, 83, 0.22);
+  border-radius: 10px;
+  padding: 2.2rem 1.8rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+}
+
+.month-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.month-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(212, 168, 83, 0.55);
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.65), 0 0 25px rgba(139, 26, 58, 0.4);
+}
+
+.month-card:hover::before {
+  opacity: 1;
+}
+
+.month-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.month-num-badge {
+  font-family: var(--serif);
+  font-size: 2.3rem;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.month-status {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 0.32rem 0.75rem;
+  border-radius: 20px;
+}
+
+.month-status.completed {
+  background: rgba(212, 168, 83, 0.18);
+  color: var(--gold);
+  border: 1px solid rgba(212, 168, 83, 0.4);
+}
+
+.month-status.draft {
+  background: rgba(201, 138, 152, 0.12);
+  color: var(--rose-pale);
+  border: 1px solid rgba(201, 138, 152, 0.25);
+}
+
+.month-card h3 {
+  font-family: var(--serif);
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.75rem;
+}
+
+.month-card p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--rose-pale);
+  opacity: 0.9;
+  margin-bottom: 1.8rem;
+  flex-grow: 1;
+}
+
+.month-card-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.8rem 1.1rem;
+  border-radius: 4px;
+  background: rgba(139, 26, 58, 0.35);
+  border: 1px solid rgba(212, 168, 83, 0.3);
+  color: var(--gold);
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  transition: all 0.3s ease;
+}
+
+.month-card-btn:hover {
+  background: var(--gold);
+  color: var(--burgundy-deep);
+  border-color: var(--gold);
+  box-shadow: 0 4px 15px rgba(212, 168, 83, 0.35);
+}
+
+.month-card-btn .arrow {
+  transition: transform 0.3s ease;
+}
+
+.month-card-btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+.home-anilar-highlight {
+  max-width: 1240px;
+  margin: 3.5rem auto 0;
+  background: linear-gradient(135deg, rgba(38, 10, 20, 0.85) 0%, rgba(18, 5, 10, 0.9) 100%);
+  border: 1px solid rgba(212, 168, 83, 0.35);
+  border-radius: 12px;
+  padding: clamp(2rem, 4vw, 3rem);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+}
+
+.home-anilar-info h3 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+
+.home-anilar-info p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--rose-pale);
+  max-width: 650px;
+}
+
+.home-anilar-action .btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.95rem 1.8rem;
+  background: var(--gold);
+  color: var(--burgundy-deep);
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  transition: all 0.3s var(--ease);
+  box-shadow: 0 5px 20px rgba(212, 168, 83, 0.3);
+}
+
+.home-anilar-action .btn-gold:hover {
+  background: #f3d489;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(212, 168, 83, 0.45);
+}
+
+/* ============ MONTHS GRID & CARDS ============ */
+.months-section {
+  padding-bottom: 2rem;
+}
+
+.months-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.month-card {
+  background: linear-gradient(145deg, rgba(42, 10, 18, 0.85), rgba(28, 11, 18, 0.9));
+  border: 1px solid rgba(201, 138, 152, 0.15);
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s;
+  position: relative;
+  overflow: hidden;
+}
+
+.month-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--rose), var(--gold));
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.month-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(212, 168, 83, 0.3);
+}
+
+.month-card:hover::before {
+  opacity: 1;
+}
+
+.month-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.month-num-badge {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  background: rgba(212, 168, 83, 0.1);
+  border: 1px solid rgba(212, 168, 83, 0.25);
+  border-radius: 4px;
+  padding: 0.3rem 0.7rem;
+}
+
+.month-status {
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+}
+
+.month-status.completed {
+  background: rgba(139, 26, 58, 0.25);
+  color: #e8c5cc;
+  border: 1px solid rgba(201, 138, 152, 0.3);
+}
+
+.month-status.awaiting {
+  background: rgba(212, 168, 83, 0.1);
+  color: rgba(212, 168, 83, 0.7);
+  border: 1px solid rgba(212, 168, 83, 0.2);
+  animation: awaitingPulse 3s ease-in-out infinite;
+}
+
+@keyframes awaitingPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+.month-card h3 {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  color: var(--rose-pale);
+  margin: 0;
+}
+
+.month-card p {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(232, 197, 204, 0.75);
+  flex-grow: 1;
+}
+
+.month-card-quote {
+  font-style: italic;
+  color: rgba(212, 168, 83, 0.6) !important;
+  font-size: 0.9rem !important;
+}
+
+.month-card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: rgba(139, 26, 58, 0.3);
+  border: 1px solid rgba(201, 138, 152, 0.2);
+  border-radius: 6px;
+  color: var(--rose-pale);
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s var(--ease);
+  align-self: flex-start;
+}
+
+.month-card-btn:hover {
+  background: rgba(139, 26, 58, 0.5);
+  border-color: var(--rose);
+  transform: translateX(4px);
+}
+
+.month-card-btn .arrow {
+  transition: transform 0.3s;
+}
+.month-card-btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Awaiting card visual difference */
+.month-card--awaiting {
+  border-color: rgba(212, 168, 83, 0.08);
+  background: linear-gradient(145deg, rgba(28, 11, 18, 0.7), rgba(20, 8, 14, 0.8));
+}
+
+.month-card--awaiting::before {
+  background: linear-gradient(90deg, rgba(212, 168, 83, 0.3), rgba(201, 138, 152, 0.2), rgba(212, 168, 83, 0.3));
+}
+
+.month-card-btn--awaiting {
+  background: rgba(212, 168, 83, 0.08);
+  border-color: rgba(212, 168, 83, 0.15);
+  color: rgba(212, 168, 83, 0.6);
+}
+
+.month-card-btn--awaiting:hover {
+  background: rgba(212, 168, 83, 0.15);
+  border-color: rgba(212, 168, 83, 0.35);
+  color: var(--gold);
+}
+
+/* ============ AY TAMAMLANDI MÜHRÜ ============ */
+.month-complete-seal {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.9rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid rgba(201, 138, 152, 0.35);
+  border-radius: 20px;
+  background: rgba(139, 26, 58, 0.22);
+  color: #e8c5cc;
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  box-shadow: 0 0 22px rgba(139, 26, 58, 0.25);
+}
+
+.month-complete-seal span {
+  color: var(--gold);
+  font-size: 0.8rem;
+}
+
+/* ============ WAITING/COMING SOON PAGE HERO ============ */
+.waiting-hero {
+  min-height: 100svh;
+  display: flex;                /* iç blok margin:auto ile ortalanır  */
+  padding: clamp(6rem, 13vh, 8.5rem) clamp(1.1rem, 4vw, 3.5rem) clamp(3rem, 8vh, 5rem);
+  position: relative;
+  scroll-snap-align: none;      /* tek ekranlık sayfada snap kaydırmayı bozuyordu */
+}
+
+/* margin:auto ile ortalama taşma yapmaz: içerik ekrandan uzunsa
+   üstten kırpılmak yerine normal şekilde aşağı akar ve kaydırılabilir. */
+.waiting-inner {
+  margin: auto;
+  width: 100%;
+  max-width: 1240px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  grid-template-areas:
+    "intro verses"
+    "back  verses";
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 2.5rem) clamp(2rem, 4vw, 4.5rem);
+}
+
+.waiting-intro  { grid-area: intro; }
+.waiting-verses { grid-area: verses; }
+.waiting-back   { grid-area: back; justify-self: center; }
+
+.waiting-intro,
+.waiting-verses {
+  min-width: 0;
+}
+
+.waiting-verses {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.2rem, 2.5vw, 2rem);
+}
+
+.waiting-hero { text-align: center; }
+
+.waiting-hero-icon {
+  font-size: clamp(3rem, 6vw, 5rem);
+  margin-bottom: 1.5rem;
+  animation: waitingHeartbeat 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(212, 168, 83, 0.3));
+}
+
+@keyframes waitingHeartbeat {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.12); opacity: 1; }
+}
+
+.waiting-hero-title {
+  font-family: var(--script);
+  font-size: clamp(2rem, 3.6vw, 3.2rem);
+  line-height: 1.25;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+  text-shadow: 0 0 30px rgba(212, 168, 83, 0.2);
+}
+
+.waiting-hero-subtitle {
+  font-family: var(--serif);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--rose-pale);
+  max-width: 46ch;
+  line-height: 1.7;
+  margin-bottom: 0;
+  opacity: 0.85;
+}
+
+.waiting-poem {
+  max-width: 100%;
+  padding: clamp(1.5rem, 3.5vw, 2.5rem) clamp(1.2rem, 3vw, 2rem);
+  border: 1px solid rgba(212, 168, 83, 0.15);
+  border-radius: 12px;
+  background: rgba(42, 10, 18, 0.5);
+  margin-bottom: 0;
+}
+
+.waiting-poem p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: rgba(232, 197, 204, 0.8);
+  line-height: 1.85;
+  margin-bottom: 1rem;
+}
+
+.waiting-poem cite {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(212, 168, 83, 0.5);
+  display: block;
+}
+
+.waiting-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.5rem;
+  background: rgba(139, 26, 58, 0.2);
+  border: 1px solid rgba(201, 138, 152, 0.2);
+  border-radius: 6px;
+  color: var(--rose-pale);
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  transition: all 0.3s var(--ease);
+  margin-top: 1rem;
+}
+
+.waiting-back:hover {
+  background: rgba(139, 26, 58, 0.4);
+  border-color: var(--rose);
+  transform: translateY(-2px);
+}
+
+.waiting-ornament {
+  font-size: 1.5rem;
+  color: rgba(212, 168, 83, 0.25);
+  margin: clamp(1rem, 2.5vh, 1.6rem) 0;
+}
+
+/* ---- Bekleme sayfası: dar ekranlarda tek sütun ---- */
+@media (max-width: 1024px) {
+  .waiting-inner {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "intro"
+      "verses"
+      "back";
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+    justify-items: center;
+  }
+  .waiting-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .waiting-verses {
+    width: 100%;
+    max-width: 560px;
+  }
+  .waiting-hero {
+    padding-top: clamp(5.5rem, 14vh, 7rem);
+  }
+}
+
+/* ============ MOBILE RESPONSIVENESS FOR HEADER & CARDS ============ */
+@media (max-width: 768px) {
+  .site-header {
+    padding: 0.5rem 0.8rem;
+  }
+  .site-nav-container {
+    gap: 0.6rem;
+  }
+  .site-logo {
+    font-size: 1.5rem;
+  }
+  .site-nav-link {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.65rem;
+  }
+  .months-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .home-anilar-highlight {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  .waiting-hero {
+    padding: 5rem 1.2rem 3rem;
+  }
+}
+
+/* ====================================================================
+   MOBİL / TABLET DÜZENİ — iPhone 14 (390x844) hedef alınarak
+   ==================================================================== */
+
+/* --- Üst menü: dar ekranda iki satıra sarar, tüm linkler görünür --- */
+@media (max-width: 860px) {
+  :root { --header-h: 118px; }
+
+  .site-nav-container {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .site-logo { font-size: 1.45rem; }
+  .site-nav {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: visible;   /* kaydırma yerine sarma: hiçbir link gizli kalmaz */
+    row-gap: 0.3rem;
+    column-gap: 0.3rem;
+    padding: 0;
+  }
+  .site-nav-link {
+    font-size: 0.66rem;
+    padding: 0.28rem 0.55rem;
+    letter-spacing: 0.06em;
+  }
+}
+
+@media (max-width: 400px) {
+  :root { --header-h: 122px; }
+  .site-logo { font-size: 1.3rem; }
+  .site-nav-link {
+    font-size: 0.6rem;
+    padding: 0.25rem 0.45rem;
+    letter-spacing: 0.04em;
+  }
+}
+
+/* --- Sabit menünün altında kalan içerik olmasın --- */
+@media (max-width: 860px) {
+  #hero,
+  .hero {
+    padding-top: calc(var(--header-h) + 1.5rem) !important;
+  }
+  .waiting-hero {
+    padding-top: calc(var(--header-h) + 1.5rem);
+    padding-bottom: 3rem;
+  }
+  .anilar-hero {
+    padding-top: calc(var(--header-h) + 1.5rem);
+  }
+  .section {
+    padding-left: clamp(1rem, 4vw, 2rem);
+    padding-right: clamp(1rem, 4vw, 2rem);
+  }
+}
+
+/* --- Ay sayfası galerileri: telefonda tek sütun, fotoğraf kırpılmaz --- */
+@media (max-width: 600px) {
+  .masonry {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+    padding: 0;
+  }
+  .tile { max-width: 100%; }
+}
+
+/* --- Dokunmatik cihazda alt yazılar hover beklemeden görünsün --- */
+@media (pointer: coarse) {
+  .tile figcaption {
+    position: static;
+    transform: none;
+    opacity: 1;
+    padding: 0.9rem 1rem 0;
+    font-size: 0.95rem;
+  }
+  .tile { aspect-ratio: auto; }
+  .tile img { height: auto; }
+  .tile::after { display: none; }
+}
+
+/* --- Şifre ekranı: telefonda kutu küçülür, fotoğrafın yüz kısmı açıkta kalır --- */
+@media (max-width: 600px) {
+  .password-gate-bg {
+    background-position: center 15%;
+  }
+  .password-box {
+    padding: 1.7rem 1.3rem;
+    max-width: 360px;
+  }
+  .password-heart {
+    font-size: 2.4rem;
+    margin-bottom: 0.7rem;
+  }
+  .password-box h2 { font-size: 1.7rem; }
+}
+
+/* --- Alçak ekran (telefon yatay): şifre kutusu tek ekrana sığsın --- */
+@media (max-height: 520px) {
+  .password-box { padding: 1.1rem 1.2rem; max-width: 400px; }
+  .password-heart { font-size: 2rem; margin-bottom: 0.4rem; }
+  .password-box h2 { font-size: 1.5rem; }
+  .password-box p { margin-bottom: 0.8rem; font-size: 0.85rem; }
+  .password-gate form { gap: 0.6rem; }
+}
+
+/* --- Yatay taşmaya karşı genel güvenlik --- */
+img, video, svg { max-width: 100%; }
+
+body {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* ====================================================================
+   ŞİİRLERİN DİLİYLE — yatay kart düzeni
+   Her şiir kendi dokusuna sahip bir kart; tüm sayfalarda aynı tasarım.
+   ==================================================================== */
+.poem-grid {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 clamp(0.4rem, 2vw, 1rem);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.1rem, 2.4vw, 1.9rem);
+  align-items: stretch;
+}
+
+.poem-card {
+  text-align: left;        /* bekleme sayfalarındaki ortalamayı ez: her sayfada aynı hiza */
+  --poem-accent: var(--color-gold);
+  --poem-glow: rgba(212, 168, 83, 0.18);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: clamp(1.5rem, 3vw, 2.3rem) clamp(1.3rem, 2.6vw, 2.1rem);
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--poem-accent) 30%, transparent);
+  background:
+    linear-gradient(160deg, rgba(48, 16, 28, 0.72) 0%, rgba(26, 10, 17, 0.86) 100%);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease),
+              border-color 0.5s var(--ease);
+}
+
+/* üst kenardaki ince aksan şeridi */
+.poem-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent,
+              var(--poem-accent) 25%, var(--poem-accent) 75%, transparent);
+  opacity: 0.75;
+}
+
+.poem-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--poem-accent) 55%, transparent);
+  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.55), 0 0 30px var(--poem-glow);
+}
+
+/* ---- her şiire ayrı doku ---- */
+.poem-card--t1 {
+  --poem-accent: #d4a853;
+  --poem-glow: rgba(212, 168, 83, 0.2);
+}
+.poem-card--t1::after {           /* ince diyagonal tarama */
+  content: "";
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(135deg,
+    rgba(212, 168, 83, 0.05) 0px, rgba(212, 168, 83, 0.05) 1px,
+    transparent 1px, transparent 11px);
+  pointer-events: none;
+}
+
+.poem-card--t2 {
+  --poem-accent: #c98a98;
+  --poem-glow: rgba(201, 138, 152, 0.22);
+}
+.poem-card--t2::after {           /* seyrek nokta dokusu */
+  content: "";
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(201, 138, 152, 0.13) 1px, transparent 1px);
+  background-size: 15px 15px;
+  pointer-events: none;
+}
+
+.poem-card--t3 {
+  --poem-accent: #c9956a;
+  --poem-glow: rgba(201, 149, 106, 0.22);
+}
+.poem-card--t3::after {           /* köşeden yayılan sıcak ışık */
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 88% 8%,
+              rgba(201, 149, 106, 0.16) 0%, transparent 62%);
+  pointer-events: none;
+}
+
+.poem-card--t4 {
+  --poem-accent: #e8c5cc;
+  --poem-glow: rgba(232, 197, 204, 0.2);
+}
+.poem-card--t4::after {           /* yatay çizgi dokusu */
+  content: "";
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(180deg,
+    rgba(232, 197, 204, 0.055) 0px, rgba(232, 197, 204, 0.055) 1px,
+    transparent 1px, transparent 9px);
+  pointer-events: none;
+}
+
+/* kart içeriği dokunun üstünde kalsın */
+.poem-num, .poem-title, .poem-text, .poem-by,
+.poem-serial-badge, .poem-serial-note { position: relative; z-index: 1; }
+
+.poem-num {
+  font-family: var(--serif);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--poem-accent);
+  opacity: 0.75;
+  margin-bottom: 0.5rem;
+}
+
+.poem-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.25rem, 1.05rem + 0.7vw, 1.75rem);
+  line-height: 1.25;
+  color: var(--cream);
+  margin-bottom: 0.35rem;
+}
+
+.poem-title + .poem-rule {
+  width: 46px;
+  height: 1px;
+  border: 0;
+  margin: 0 0 1.1rem;
+  background: var(--poem-accent);
+  opacity: 0.6;
+}
+
+.poem-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1rem, 0.94rem + 0.4vw, 1.18rem);
+  line-height: 1.95;
+  letter-spacing: 0.02em;
+  color: rgba(246, 234, 216, 0.92);
+  flex-grow: 1;
+  margin: 0;
+}
+
+.poem-by {
+  display: block;
+  margin-top: 1.3rem;
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--poem-accent);
+  opacity: 0.85;
+}
+
+/* ---- "Ben Sana Mecburum" — sayfalara bölünmüş seri ---- */
+.poem-card--serial {
+  grid-column: 1 / -1;
+  --poem-accent: #d4a853;
+  --poem-glow: rgba(212, 168, 83, 0.26);
+  background:
+    linear-gradient(120deg, rgba(60, 18, 34, 0.8) 0%, rgba(24, 9, 16, 0.92) 70%);
+  border-color: rgba(212, 168, 83, 0.34);
+  padding-left: clamp(1.6rem, 3.2vw, 2.8rem);
+}
+
+.poem-card--serial::after {       /* sol kenarda kalın altın şerit */
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg,
+    transparent, var(--poem-accent) 18%, var(--poem-accent) 82%, transparent);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.poem-serial-badge {
+  align-self: flex-start;
+  margin-bottom: 0.85rem;
+  padding: 0.32rem 0.85rem;
+  border: 1px solid rgba(212, 168, 83, 0.4);
+  border-radius: 20px;
+  background: rgba(212, 168, 83, 0.1);
+  font-family: var(--sans);
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-pale);
+}
+
+.poem-serial-note {
+  position: relative;
+  margin-top: 1rem;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-style: normal;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  color: rgba(232, 197, 204, 0.55);
+}
+
+/* ---- şiir kartları: tablet ve telefon ---- */
+@media (max-width: 900px) {
+  .poem-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .poem-card { padding: 1.4rem 1.15rem; border-radius: 12px; }
+  .poem-card--serial { padding-left: 1.5rem; }
+  .poem-text { line-height: 1.85; }
+}
+
+/* Zaman çizgisi (masaüstü): öğe sayısı kaç olursa olsun ortalanmış dursun.
+   Mobilde çizgi dikeydir, oradaki kurallara dokunulmaz. */
+@media (min-width: 901px) {
+  .timeline-track {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    justify-content: center;
+  }
+}

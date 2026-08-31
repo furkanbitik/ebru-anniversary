@@ -1,39 +1,64 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#2a0a12" />
-  <meta name="description" content="Ebru için" />
-  <title>Bir Ay — Ebru'ya</title>
+  <meta name="description" content="Ebru & Furkan — Bizim Hikayemiz" />
+  <title>Ebru &amp; Furkan — Bizim Hikayemiz</title>
 
   <!-- Open Graph / Social preview -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Ebru için" />
-  <meta property="og:description" content="Seni düşünmek güzel şey, ümitli şey..." />
-  <meta property="og:image" content="images/photo-1.jpg" />
-  <meta property="og:image:alt" content="Ebru ve Furkan — bir aylık anılarımızdan bir kare" />
+  <meta property="og:title" content="Ebru & Furkan — Bizim Hikayemiz" />
+  <meta property="og:description" content="Bir bakışla başlayan masalımız, sonsuzluğa uzanan en güzel yolumuz..." />
+  <meta property="og:image" content="images/photo-29.jpeg" />
+  <meta property="og:image:alt" content="Ebru ve Furkan" />
   <meta property="og:locale" content="tr_TR" />
-  <meta property="og:site_name" content="Bir Ay — Ebru'ya" />
+  <meta property="og:site_name" content="Ebru & Furkan — Bizim Hikayemiz" />
 
-  <!-- Twitter card (mirrors OG so iMessage / X / WhatsApp all pick something up) -->
+  <!-- Twitter card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Ebru için · Bir Aylık" />
-  <meta name="twitter:description" content="Seni düşünmek güzel şey, ümitli şey..." />
-  <meta name="twitter:image" content="images/photo-1.jpg" />
+  <meta name="twitter:title" content="Ebru & Furkan — Bizim Hikayemiz" />
+  <meta name="twitter:description" content="Bir bakışla başlayan masalımız, sonsuzluğa uzanan en güzel yolumuz..." />
+  <meta name="twitter:image" content="images/photo-29.jpeg" />
 
-  <!-- Tiny inline heart favicon (no extra file needed) -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23c98a98' d='M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9z'/%3E%3C/svg%3E" />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23c98a98' d='M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9z'/%3E%3C/svg%3E" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Lato:wght@300;400;700&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Lato:wght@300;400;700&family=Dancing+Script:wght@500;700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+
+  <!-- ============ SITE TOP NAVIGATION ============ -->
+  <header class="site-header">
+    <div class="site-nav-container">
+      <a href="index.html" class="site-logo">
+        Ebru <span class="heart-icon">♥</span> Furkan
+      </a>
+      <nav class="site-nav" aria-label="Ana Menü">
+        <a href="index.html" class="site-nav-link active">Ana Sayfa</a>
+        <a href="1-ay.html" class="site-nav-link">1. Ay</a>
+        <a href="2-ay.html" class="site-nav-link">2. Ay</a>
+        <a href="3-ay.html" class="site-nav-link">3. Ay</a>
+        <a href="4-ay.html" class="site-nav-link">4. Ay</a>
+        <a href="5-ay.html" class="site-nav-link">5. Ay</a>
+        <a href="6-ay.html" class="site-nav-link">6. Ay</a>
+        <a href="anilar.html" class="site-nav-link badge-anilar">Anılar (83)</a>
+      </nav>
+    </div>
+  </header>
 
   <!-- ============ PASSWORD ENTRY GATE ============ -->
   <div id="password-gate" class="password-gate" aria-modal="true" role="dialog">
+    <div class="password-gate-bg" aria-hidden="true"></div>
+    <div class="password-gate-overlay" aria-hidden="true"></div>
     <div class="password-box" id="password-box">
       <div class="password-heart">♥</div>
       <h2>Küçük Bir Sır...</h2>
@@ -51,7 +76,7 @@
 
   <!-- Inline Auth Check to prevent flash of content -->
   <script>
-    (function() {
+    (function () {
       if (sessionStorage.getItem('ebru_auth') === 'true') {
         document.getElementById('password-gate').style.display = 'none';
       } else {
@@ -60,417 +85,300 @@
     })();
   </script>
 
-  <!-- ============ PAGE LOADER (rose SVG draws itself, then fades) ============ -->
+  <!-- ============ PAGE LOADER ============ -->
   <div id="loader" class="loader" role="status" aria-live="polite" aria-label="Sayfa yükleniyor">
     <svg class="loader-rose" viewBox="0 0 120 120" aria-hidden="true">
-      <path class="loader-path loader-path--stem"  d="M60 110 C 60 92, 58 80, 60 66" />
-      <path class="loader-path loader-path--leaf"  d="M60 84 C 50 80, 42 78, 38 86 C 44 90, 54 90, 60 84 Z" />
-      <path class="loader-path loader-path--outer" d="M60 66 C 36 66, 30 46, 46 36 C 60 28, 80 34, 84 50 C 88 66, 74 78, 60 76 C 48 74, 42 66, 46 56 C 50 48, 60 46, 66 52 C 72 58, 70 66, 62 66" />
-      <path class="loader-path loader-path--bud"   d="M58 60 C 54 56, 58 50, 64 54 C 68 58, 64 62, 58 60 Z" />
+      <path class="loader-path loader-path--stem" d="M60 110 C 60 92, 58 80, 60 66" />
+      <path class="loader-path loader-path--leaf" d="M60 84 C 50 80, 42 78, 38 86 C 44 90, 54 90, 60 84 Z" />
+      <path class="loader-path loader-path--outer"
+        d="M60 66 C 36 66, 30 46, 46 36 C 60 28, 80 34, 84 50 C 88 66, 74 78, 60 76 C 48 74, 42 66, 46 56 C 50 48, 60 46, 66 52 C 72 58, 70 66, 62 66" />
+      <path class="loader-path loader-path--bud" d="M58 60 C 54 56, 58 50, 64 54 C 68 58, 64 62, 58 60 Z" />
     </svg>
-    <p class="loader-word">Ebru</p>
+    <p class="loader-word">Ebru &amp; Furkan</p>
   </div>
 
-  <!-- Visually-hidden page heading for screen readers (semantic h1) -->
-  <h1 class="visually-hidden">Bir Ay — Ebru için bir aylık aşk günlüğü</h1>
+  <h1 class="visually-hidden">Ebru &amp; Furkan — Bizim Hikayemiz Aşk Günlüğü</h1>
 
-  <!--
-  ===================================================================
-  CONTENT GUIDE — How to personalise this site
-  -------------------------------------------------------------------
-  Every editable area below is marked with an HTML comment that
-  begins with "EDIT:". Search the file for "EDIT:" to jump between
-  them. For photos, see images/README.md.
-  ===================================================================
-  -->
-
-  <!-- ============================================================
-       GLOBAL FLOATING HEARTS — fixed full-screen layer behind ALL
-       content. 25 hearts, three colours, varied sizes/timings.
-       Driven by a SINGLE @keyframes floatHeart rule; per-heart
-       individuality lives in inline animation-duration / -delay
-       and CSS custom properties.
-       ============================================================ -->
+  <!-- GLOBAL FLOATING HEARTS -->
   <div id="hearts-global" aria-hidden="true">
-    <span style="left:  3%; font-size: 1.10rem; color: rgba(212,168,83,0.12); --drift:  12px; animation-duration: 22s; animation-delay:  -3s;">♥</span>
-    <span style="left:  7%; font-size: 0.80rem; color: rgba(201,149,106,0.10); --drift: -14px; animation-duration: 28s; animation-delay: -11s;">♥</span>
-    <span style="left: 11%; font-size: 1.55rem; color: rgba(139, 26,58,0.14); --drift:  18px; animation-duration: 19s; animation-delay:  -7s;">♥</span>
-    <span style="left: 14%; font-size: 0.90rem; color: rgba(212,168,83,0.12); --drift: -10px; animation-duration: 35s; animation-delay: -19s;">♥</span>
-    <span style="left: 18%; font-size: 2.00rem; color: rgba(212,168,83,0.12); --drift:  16px; animation-duration: 26s; animation-delay:  -2s;">♥</span>
-    <span style="left: 23%; font-size: 0.70rem; color: rgba(201,149,106,0.10); --drift: -12px; animation-duration: 21s; animation-delay: -15s;">♥</span>
-    <span style="left: 27%; font-size: 1.30rem; color: rgba(139, 26,58,0.14); --drift:  14px; animation-duration: 30s; animation-delay:  -9s;">♥</span>
-    <span style="left: 31%; font-size: 1.00rem; color: rgba(212,168,83,0.12); --drift: -15px; animation-duration: 24s; animation-delay:  -5s;">♥</span>
-    <span style="left: 36%; font-size: 1.80rem; color: rgba(201,149,106,0.10); --drift:  11px; animation-duration: 32s; animation-delay: -22s;">♥</span>
-    <span style="left: 41%; font-size: 0.85rem; color: rgba(212,168,83,0.12); --drift: -13px; animation-duration: 18s; animation-delay: -14s;">♥</span>
-    <span style="left: 45%; font-size: 1.20rem; color: rgba(139, 26,58,0.14); --drift:  17px; animation-duration: 27s; animation-delay:  -6s;">♥</span>
-    <span style="left: 49%; font-size: 0.95rem; color: rgba(212,168,83,0.12); --drift: -16px; animation-duration: 23s; animation-delay: -10s;">♥</span>
-    <span style="left: 53%; font-size: 2.20rem; color: rgba(201,149,106,0.10); --drift:  13px; animation-duration: 38s; animation-delay:  -1s;">♥</span>
-    <span style="left: 57%; font-size: 0.75rem; color: rgba(212,168,83,0.12); --drift: -11px; animation-duration: 20s; animation-delay: -17s;">♥</span>
-    <span style="left: 62%; font-size: 1.40rem; color: rgba(139, 26,58,0.14); --drift:  19px; animation-duration: 29s; animation-delay:  -8s;">♥</span>
-    <span style="left: 66%; font-size: 1.00rem; color: rgba(212,168,83,0.12); --drift: -14px; animation-duration: 25s; animation-delay: -13s;">♥</span>
-    <span style="left: 70%; font-size: 1.70rem; color: rgba(201,149,106,0.10); --drift:  12px; animation-duration: 33s; animation-delay:  -4s;">♥</span>
-    <span style="left: 74%; font-size: 0.80rem; color: rgba(212,168,83,0.12); --drift: -17px; animation-duration: 22s; animation-delay: -20s;">♥</span>
-    <span style="left: 78%; font-size: 1.30rem; color: rgba(139, 26,58,0.14); --drift:  15px; animation-duration: 28s; animation-delay: -12s;">♥</span>
-    <span style="left: 82%; font-size: 0.90rem; color: rgba(201,149,106,0.10); --drift: -10px; animation-duration: 19s; animation-delay: -23s;">♥</span>
-    <span style="left: 86%; font-size: 1.60rem; color: rgba(212,168,83,0.12); --drift:  13px; animation-duration: 31s; animation-delay: -16s;">♥</span>
-    <span style="left: 89%; font-size: 1.00rem; color: rgba(139, 26,58,0.14); --drift: -18px; animation-duration: 24s; animation-delay:  -3s;">♥</span>
-    <span style="left: 92%; font-size: 0.85rem; color: rgba(201,149,106,0.10); --drift:  14px; animation-duration: 26s; animation-delay: -18s;">♥</span>
-    <span style="left: 95%; font-size: 1.50rem; color: rgba(201,149,106,0.10); --drift: -12px; animation-duration: 36s; animation-delay:  -7s;">♥</span>
-    <span style="left: 97%; font-size: 1.10rem; color: rgba(139, 26,58,0.14); --drift:  16px; animation-duration: 21s; animation-delay: -11s;">♥</span>
+    <span
+      style="left:  3%; font-size: 1.10rem; color: rgba(212,168,83,0.12); --drift:  12px; animation-duration: 22s; animation-delay:  -3s;">♥</span>
+    <span
+      style="left:  7%; font-size: 0.80rem; color: rgba(201,149,106,0.10); --drift: -14px; animation-duration: 28s; animation-delay: -11s;">♥</span>
+    <span
+      style="left: 11%; font-size: 1.55rem; color: rgba(139, 26,58,0.14); --drift:  18px; animation-duration: 19s; animation-delay:  -7s;">♥</span>
+    <span
+      style="left: 14%; font-size: 0.90rem; color: rgba(212,168,83,0.12); --drift: -10px; animation-duration: 35s; animation-delay: -19s;">♥</span>
+    <span
+      style="left: 18%; font-size: 2.00rem; color: rgba(212,168,83,0.12); --drift:  16px; animation-duration: 26s; animation-delay:  -2s;">♥</span>
+    <span
+      style="left: 23%; font-size: 0.70rem; color: rgba(201,149,106,0.10); --drift: -12px; animation-duration: 21s; animation-delay: -15s;">♥</span>
+    <span
+      style="left: 27%; font-size: 1.30rem; color: rgba(139, 26,58,0.14); --drift:  14px; animation-duration: 30s; animation-delay:  -9s;">♥</span>
+    <span
+      style="left: 31%; font-size: 1.00rem; color: rgba(212,168,83,0.12); --drift: -15px; animation-duration: 24s; animation-delay:  -5s;">♥</span>
+    <span
+      style="left: 36%; font-size: 1.80rem; color: rgba(201,149,106,0.10); --drift:  11px; animation-duration: 32s; animation-delay: -22s;">♥</span>
+    <span
+      style="left: 41%; font-size: 0.85rem; color: rgba(212,168,83,0.12); --drift: -13px; animation-duration: 18s; animation-delay: -14s;">♥</span>
+    <span
+      style="left: 45%; font-size: 1.20rem; color: rgba(139, 26,58,0.14); --drift:  17px; animation-duration: 27s; animation-delay:  -6s;">♥</span>
+    <span
+      style="left: 49%; font-size: 0.95rem; color: rgba(212,168,83,0.12); --drift: -16px; animation-duration: 23s; animation-delay: -10s;">♥</span>
+    <span
+      style="left: 53%; font-size: 2.20rem; color: rgba(201,149,106,0.10); --drift:  13px; animation-duration: 38s; animation-delay:  -1s;">♥</span>
+    <span
+      style="left: 57%; font-size: 0.75rem; color: rgba(212,168,83,0.12); --drift: -11px; animation-duration: 20s; animation-delay: -17s;">♥</span>
+    <span
+      style="left: 62%; font-size: 1.40rem; color: rgba(139, 26,58,0.14); --drift:  19px; animation-duration: 29s; animation-delay:  -8s;">♥</span>
+    <span
+      style="left: 66%; font-size: 1.00rem; color: rgba(212,168,83,0.12); --drift: -14px; animation-duration: 25s; animation-delay: -13s;">♥</span>
+    <span
+      style="left: 70%; font-size: 1.70rem; color: rgba(201,149,106,0.10); --drift:  12px; animation-duration: 33s; animation-delay:  -4s;">♥</span>
+    <span
+      style="left: 74%; font-size: 0.80rem; color: rgba(212,168,83,0.12); --drift: -17px; animation-duration: 22s; animation-delay: -20s;">♥</span>
+    <span
+      style="left: 78%; font-size: 1.30rem; color: rgba(139, 26,58,0.14); --drift:  15px; animation-duration: 28s; animation-delay: -12s;">♥</span>
+    <span
+      style="left: 82%; font-size: 0.90rem; color: rgba(201,149,106,0.10); --drift: -10px; animation-duration: 19s; animation-delay: -23s;">♥</span>
+    <span
+      style="left: 86%; font-size: 1.60rem; color: rgba(212,168,83,0.12); --drift:  13px; animation-duration: 31s; animation-delay: -16s;">♥</span>
+    <span
+      style="left: 89%; font-size: 1.00rem; color: rgba(139, 26,58,0.14); --drift: -18px; animation-duration: 24s; animation-delay:  -3s;">♥</span>
+    <span
+      style="left: 92%; font-size: 0.85rem; color: rgba(201,149,106,0.10); --drift:  14px; animation-duration: 26s; animation-delay: -18s;">♥</span>
+    <span
+      style="left: 95%; font-size: 1.50rem; color: rgba(201,149,106,0.10); --drift: -12px; animation-duration: 36s; animation-delay:  -7s;">♥</span>
+    <span
+      style="left: 97%; font-size: 1.10rem; color: rgba(139, 26,58,0.14); --drift:  16px; animation-duration: 21s; animation-delay: -11s;">♥</span>
   </div>
 
-  <!-- Falling petals layer (CSS-only animation) -->
+  <!-- Falling petals layer -->
   <div class="petals" aria-hidden="true">
     <span class="petal"></span><span class="petal"></span><span class="petal"></span>
     <span class="petal"></span><span class="petal"></span><span class="petal"></span>
     <span class="petal"></span><span class="petal"></span><span class="petal"></span>
     <span class="petal"></span><span class="petal"></span><span class="petal"></span>
-    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
-    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
   </div>
 
-  <!-- Ambient floating rose petals (subtle, slow) -->
+  <!-- Ambient floating rose petals -->
   <div class="rose-petals" aria-hidden="true">
     <span class="rose"></span><span class="rose"></span><span class="rose"></span>
     <span class="rose"></span><span class="rose"></span><span class="rose"></span>
-    <span class="rose"></span><span class="rose"></span><span class="rose"></span>
-    <span class="rose"></span>
   </div>
 
   <nav class="side-nav" aria-label="Bölümler">
-    <a href="#hero" class="dot" data-label="Başlangıç"></a>
-    <a href="#gallery" class="dot" data-label="Anılar"></a>
-    <a href="#timeline" class="dot" data-label="Zaman Çizgisi"></a>
+    <a href="#hero" class="dot" data-label="Giriş"></a>
+    <a href="#months" class="dot" data-label="Aylar Yolculuğu"></a>
     <a href="#memories" class="dot" data-label="Hatıralar"></a>
-    <a href="#poems" class="dot" data-label="Şiirler"></a>
-    <a href="#letter" class="dot" data-label="Mektup"></a>
-    <a href="#footer" class="dot" data-label="Son"></a>
+    <a href="#poems" class="dot" data-label="Aşk Şiirleri"></a>
+    <a href="#letter" class="dot" data-label="Sana Mektup"></a>
+    <a href="#footer" class="dot" data-label="Sonsuzluk"></a>
   </nav>
 
-  <!-- ====================================================================
-       HERO — completely rebuilt
-       Desktop : CSS Grid 1fr auto 1fr, 100vh, photo at 80vh w/ contain
-       Mobile  : single column, order = label > photo > left > right
-       ==================================================================== -->
-  <section id="hero" class="hero">
-
-    <!-- Label is a top-level element so on mobile it can sit above the photo
-         while remaining DOM-adjacent to the left column on desktop. -->
-    <!-- EDIT: HERO LABEL (the eyebrow text above the romantic line) -->
-    <p class="hero-label">SEVGİLİ EBRU'YA</p>
+  <!-- ============ HERO ============ -->
+  <section id="hero" class="hero home-hero">
+    <p class="hero-label">BİZİM HİKAYEMİZ · EBRU &amp; FURKAN</p>
 
     <div class="hero-left">
-      <!-- EDIT: HERO ROMANTIC OPENING — italic Cormorant, 1.4rem -->
       <p class="hero-romantic">
-        Bir bakışta başladı,<br />
-        her günde biraz daha derinleşti...
+        Bir bakışla başlayan masalımız,<br />
+        sonsuzluğa uzanan en güzel yolumuz...
       </p>
 
-      <!-- EDIT: HERO COUNTER — "1 Ay" + small label below -->
       <div class="hero-counter">
-        <span class="hero-counter-num">1</span><span class="hero-counter-unit">Ay</span>
-        <p class="hero-counter-sub">BİRLİKTE GEÇİRİLEN</p>
+        <span class="hero-counter-num">∞</span>
+        <p class="hero-counter-sub">SONSUZ AŞK VE BAĞLILIK</p>
       </div>
 
-      <!-- EDIT: HERO STATS — three short italic lines with ♥ bullets -->
       <ul class="hero-stats">
-        <li><span class="stat-icon" aria-hidden="true">♥</span> 30 gün, her biri bir öncekinden daha güzel</li>
-        <li><span class="stat-icon" aria-hidden="true">♥</span> Bitmek bilmeyen sohbetler, hiç eksilmeyecek sevgimiz</li>
-        <li><span class="stat-icon" aria-hidden="true">♥</span> Seninle geçen her an, bir ömre bedel</li>
+        <li><span class="stat-icon" aria-hidden="true">♥</span> 23 Nisan 2026'da atılan ilk ve en özel adım</li>
+        <li><span class="stat-icon" aria-hidden="true">♥</span> Her geçen gün büyüyen, derinleşen eşsiz bir sevgi</li>
+        <li><span class="stat-icon" aria-hidden="true">♥</span> Birlikte yazılan aylar, paylaşılan yüzlerce güzel anı
+        </li>
       </ul>
     </div>
 
-    <!-- Photo (center column on desktop, second on mobile after label) -->
+    <!-- Center Photo -->
     <div class="hero-photo-wrapper">
-      <!--
-        EDIT: HERO PHOTO
-        File: images/photo-29.jpeg (or any portrait from 1-68)
-        Sizing: height: 80vh, width: auto. NEVER cropped (object-fit: contain).
-      -->
-      <img src="images/thumbs/photo-29.webp" data-full="images/photo-29.jpeg" alt="Furkan ve Ebru'nun portresi" />
+      <img src="images/thumbs/photo-54.webp" data-full="images/photo-54.jpeg" alt="Furkan ve Ebru" />
     </div>
 
     <div class="hero-right">
-      <!-- EDIT: HERO QUOTE — long romantic note with gold side-rule -->
       <blockquote class="hero-note">
-        Seninle her şey daha güzel görünüyor.
-        Sabahlar daha aydınlık, geceler çok daha huzurlu.
-        Bir ay geçti — ve her geçen günle birlikte,
-        seninle olmak bir öncekinden daha anlamlı hale geliyor.
+        Seninle her an, hayatımın en aydınlık ve huzurlu sayfası.
+        Zaman geçtikçe sevgimiz eksilmiyor; aksine her sabah yeni bir heyecanla,
+        her gece derin bir şükürle büyüyor sevgilim.
       </blockquote>
-      <br/>
+      <br />
 
-      <!-- EDIT: HERO GOLD APHORISM -->
       <p class="hero-oneliner">
-        Aşk, küçük anlarda saklıdır.<br />
-        Sen bana her küçük anı büyük hissettirdin.
+        Aşk, iki kalbin aynı sessizliği ve neşeyi paylaşabilmesidir.<br />
+        Sen benim en güzel rüyam, en gerçek mucizemsin.
       </p>
 
       <hr class="hero-divider" aria-hidden="true" />
 
-      <!-- EDIT: HERO START DATE — "DD AY YYYY'TEN BERİ  ✦" -->
-      <p class="hero-date">23 NİSAN 2026'TEN BERİ <span class="hero-date-star" aria-hidden="true">✦</span></p>
+      <p class="hero-date">23 NİSAN 2026'DAN SONSUZLUĞA <span class="hero-date-star" aria-hidden="true">✦</span></p>
     </div>
   </section>
 
-  <!-- ============ GALLERY ============ -->
-  <section id="gallery" class="section gallery">
+  <!-- ============ AYLAR YOLCULUĞU (MONTHS JOURNEY) ============ -->
+  <section id="months" class="section months-section">
     <header class="section-head reveal">
-      <p class="overline">Bölüm I</p>
-      <h2>Donmuş Anlar</h2>
-      <p class="section-sub">Zamanın durduğu o küçük kareler...</p>
+      <p class="overline">Zaman Tünelimiz</p>
+      <h2>Aylar Yolculuğu</h2>
+      <p class="section-sub">Birlikte yazdığımız masalın sayfalarına dokunun...<br />
+        Tamamlanan aylar açık; sırasını bekleyen aylar ise zamanı geldiğinde açılacak.</p>
     </header>
 
-    <!--
-      GALLERY — En güzel 10 kare burada.
-      Tüm 68 fotoğraf için sayfanın altındaki "Tüm Anıları Gör" düğmesini
-      tıklayın → anilar.html. Dosya uzantısı: .jpeg (tüm fotoğraflar JPEG).
-    -->
-    <div class="masonry">
+    <div class="months-grid">
 
-      <figure class="tile tile--tall reveal">
-        <!-- EDIT: GALLERY PHOTO 1 — tall portrait | images/photo-1.jpeg -->
-        <img loading="lazy" src="images/thumbs/photo-54.webp" data-full="images/photo-54.jpeg" alt="Anı 1" />
-        <figcaption>
-          <!-- EDIT: CAPTION 1 -->
-          O yağmurlu günde, şemsiyenin altında birbirimize sığındığımız an. En tatlı en sevdiğimiz anlardan biriydi. En harika da fotoğrafımız.
-      
-        </figcaption>
-      </figure>
+      <!-- 1. AY KARTI -->
+      <article class="month-card reveal">
+        <div class="month-card-header">
+          <span class="month-num-badge">1. Ay</span>
+          <span class="month-status completed">Tamamlandı ♥</span>
+        </div>
+        <h3>İlk Heyecan &amp; İlk Adım</h3>
+        <p>
+          23 Nisan'dan 23 Mayıs'a... İlk bakış, ilk yağmurlu gün, konserler,
+          ilk "seni seviyorum" ve kalbimizin birbirine mühürlendiği o unutulmaz 30 gün.
+        </p>
+        <a href="1-ay.html" class="month-card-btn">
+          <span>1. Ay Sayfasına Git</span>
+          <span class="arrow">→</span>
+        </a>
+      </article>
 
-      <figure class="tile reveal">
-        <!-- EDIT: GALLERY PHOTO 10 — standard | images/photo-10.jpeg -->
-        <img loading="lazy" src="images/thumbs/photo-75.webp" data-full="images/photo-75.jpg" alt="Anı 10" />
-        <figcaption>
-          Aşkın her anını yaşadığımız bir gün daha. Dünyanın en güzel gülüşü senin gülüşün.
-        </figcaption>
-      </figure>
+      <!-- 2. AY KARTI -->
+      <article class="month-card reveal">
+        <div class="month-card-header">
+          <span class="month-num-badge">2. Ay</span>
+          <span class="month-status completed">Tamamlandı ♥</span>
+        </div>
+        <h3>İki Kalp, Tek Ritim</h3>
+        <p>
+          Mayıs'tan Haziran'a... 60 gün boyunca büyüyen güven, paylaşılan kahkahalar
+          ve birbirimize her geçen gün daha da hayran olduğumuz güzel günler.
+        </p>
+        <a href="2-ay.html" class="month-card-btn">
+          <span>2. Ay Sayfasına Git</span>
+          <span class="arrow">→</span>
+        </a>
+      </article>
 
-      <figure class="tile reveal">
-        <!-- EDIT: GALLERY PHOTO 10 — standard | images/photo-10.jpeg -->
-        <img loading="lazy" src="images/thumbs/photo-81.webp" data-full="images/photo-81.jpg" alt="Anı 10" />
-        <figcaption>
-          <!-- EDIT: CAPTION 10 -->
-          Alişveriş testinde başarılı olup yüzüm gülerken :))) Babana benzetmen çok mutlu etmişti.
-        </figcaption>
-      </figure>
+      <!-- 3. AY KARTI — Şu an yaşanıyor, sayfa henüz açılmadı -->
+      <article class="month-card month-card--awaiting reveal">
+        <div class="month-card-header">
+          <span class="month-num-badge">3. Ay</span>
+          <span class="month-status awaiting">Şu An Yaşanıyor ✦</span>
+        </div>
+        <h3>Mevsimler Değişir, Aşk Büyür</h3>
+        <p class="month-card-quote">
+          "Bazı hikâyeler bir kez başlamaz;<br />
+          en güzel yerinden yeniden başlar."<br />
+          Üçüncü ayımız tam oradan devam ediyor; bu sayfa,
+          o günler tamamlandığında kalbimizle dolacak.
+        </p>
+        <a href="3-ay.html" class="month-card-btn month-card-btn--awaiting">
+          <span>3. Ay Sayfasını Aç</span>
+          <span class="arrow">→</span>
+        </a>
+      </article>
 
-      <figure class="tile reveal">
-        <!-- EDIT: GALLERY PHOTO 10 — standard | images/photo-10.jpeg -->
-        <img loading="lazy" src="images/thumbs/photo-84.webp" data-full="images/photo-84.jpg" alt="Anı 10" />
-        <figcaption>
-          <!-- EDIT: CAPTION 10 -->
-          Bu fotoğrafı çok seviyorum çünkü o günün ne kadar güzel geçtiğini hatırlatıyor bana.
-        </figcaption>
-      </figure>
+      <!-- 4. AY KARTI — Gelecekte -->
+      <article class="month-card month-card--awaiting reveal">
+        <div class="month-card-header">
+          <span class="month-num-badge">4. Ay</span>
+          <span class="month-status awaiting">Yakında... ✦</span>
+        </div>
+        <h3>Dört Mevsimim</h3>
+        <p class="month-card-quote">
+          "En güzel günlerimiz: henüz yaşamadıklarımız." — Nâzım Hikmet<br />
+          Dördüncü ayımız daha gelmedi; bu sayfa onu bekliyor.
+        </p>
+        <a href="4-ay.html" class="month-card-btn month-card-btn--awaiting">
+          <span>4. Ay Sayfasını Aç</span>
+          <span class="arrow">→</span>
+        </a>
+      </article>
 
-      <figure class="tile reveal">
-        <!-- EDIT: GALLERY PHOTO 10 — standard | images/photo-10.jpeg -->
-        <img loading="lazy" src="images/thumbs/photo-88.webp" data-full="images/photo-88.jpg" alt="Anı 10" />
-        <figcaption>
-          <!-- EDIT: CAPTION 10 -->
-          Sabah buluşmalarımız her biri ayrı güzel
-        </figcaption>
-      </figure>
+      <!-- 5. AY KARTI — Gelecekte -->
+      <article class="month-card month-card--awaiting reveal">
+        <div class="month-card-header">
+          <span class="month-num-badge">5. Ay</span>
+          <span class="month-status awaiting">Yakında... ✦</span>
+        </div>
+        <h3>Beşinci Bahar</h3>
+        <p class="month-card-quote">
+          "Sevgi acele etmez; tohumu bugün atılır,<br />
+          gölgesinde yarın oturulur."<br />
+          Beşinci ayımız için ayrılmış, sabırla bekleyen bir sayfa.
+        </p>
+        <a href="5-ay.html" class="month-card-btn month-card-btn--awaiting">
+          <span>5. Ay Sayfasını Aç</span>
+          <span class="arrow">→</span>
+        </a>
+      </article>
 
-      <figure class="tile reveal">
-        <!-- EDIT: GALLERY PHOTO 2 — standard | images/photo-2.jpeg -->
-        <img loading="lazy" src="images/thumbs/photo-68.webp" data-full="images/photo-68.jpeg" alt="Anı 2" />
-        <figcaption>
-          <!-- EDIT: CAPTION 2 -->
-          Piknikte, güneşin altında, sadece ikimiz ve o anın büyüsü.
-        </figcaption>
-      </figure>
-
-      <figure class="tile reveal">
-        <!-- EDIT: GALLERY PHOTO 3 — standard | images/photo-3.jpeg -->
-        <img loading="lazy" src="images/thumbs/photo-67.webp" data-full="images/photo-67.jpeg" alt="Anı 3" />
-        <figcaption>
-          <!-- EDIT: CAPTION 3 -->
-          En sevdiğimiz kafede, kahvelerimizi yudumlarken, senin o öpüşün aklımda...
-        </figcaption>
-      </figure>
-
-      <figure class="tile tile--wide reveal">
-        <!-- EDIT: GALLERY PHOTO 4 — wide panorama | images/photo-4.jpeg -->
-        <img loading="lazy" src="images/thumbs/photo-57.webp" data-full="images/photo-57.jpeg" alt="Anı 4" />
-        <figcaption>
-          <!-- EDIT: CAPTION 4 -->
-          Bugünün güzelliği bambaşkaydı, çünkü sen vardın. Şehir bizimdi, biz birbirimizin.
-        </figcaption>
-      </figure>
-
-      <figure class="tile tile--tall reveal">
-        <!-- EDIT: GALLERY PHOTO 5 — tall portrait | images/photo-5.jpeg -->
-        <img loading="lazy" src="images/thumbs/photo-43.webp" data-full="images/photo-43.jpeg" alt="Anı 5" />
-        <figcaption>
-          <!-- EDIT: CAPTION 5 -->
-          İlk günümüz, bakışmamız, gülüşümüz o kadar içten ki, Harika bir gündü, Bakışlarına kurban olduğum.
-        </figcaption>
-      </figure>
-
-      <figure class="tile reveal">
-        <!-- EDIT: GALLERY PHOTO 6 — standard | images/photo-6.jpeg -->
-        <img loading="lazy" src="images/thumbs/photo-49.webp" data-full="images/photo-49.jpeg" alt="Anı 6" />
-        <figcaption>
-          <!-- EDIT: CAPTION 6 -->
-          Okuldaki tatlı anımız. O gün, o an, o tatlılık... Hepsi çok güzel.
-        </figcaption>
-      </figure>
-
-      <figure class="tile reveal">
-        <!-- EDIT: GALLERY PHOTO 7 — standard | images/photo-7.jpeg -->
-        <img loading="lazy" src="images/thumbs/photo-41.webp" data-full="images/photo-41.jpeg" alt="Anı 7" />
-        <figcaption>
-          <!-- EDIT: CAPTION 7 -->
-          İlk günden bir kare daha. O günün büyüsü, o anın sıcaklığı... Hepsi hala içimi ısıtıyor.
-        </figcaption>
-      </figure>
-
-      <figure class="tile tile--tall reveal">
-        <!-- EDIT: GALLERY PHOTO 8 — tall portrait | images/photo-8.jpeg -->
-        <img loading="lazy" src="images/thumbs/photo-26.webp" data-full="images/photo-26.jpeg" alt="Anı 8" />
-        <figcaption>
-          <!-- EDIT: CAPTION 8 -->
-          Şu yanaklarının yanağıma değdiği an ben ben değildim. O an, o his, o sıcaklık...
-        </figcaption>
-      </figure>
-
-      <figure class="tile tile--wide reveal">
-        <!-- EDIT: GALLERY PHOTO 9 — wide panorama | images/photo-9.jpeg -->
-        <img loading="lazy" src="images/thumbs/photo-20.webp" data-full="images/photo-20.jpeg" alt="Anı 9" />
-        <figcaption>
-          <!-- EDIT: CAPTION 9 -->
-          Ne kadar kötü bir gün olmuşsa da, çok güzel atlattık ve sadece sana sarıldığım bu an kaldı aklımda. O an, o güven, o sevgi...
-        </figcaption>
-      </figure>
-
-      <figure class="tile reveal">
-        <!-- EDIT: GALLERY PHOTO 10 — standard | images/photo-10.jpeg -->
-        <img loading="lazy" src="images/thumbs/photo-30.webp" data-full="images/photo-30.jpeg" alt="Anı 10" />
-        <figcaption>
-          <!-- EDIT: CAPTION 10 -->
-          Sarılar içinde beni büyülediğin o an.
-        </figcaption>
-      </figure>
-
-      <figure class="tile reveal">
-        <!-- EDIT: GALLERY PHOTO 10 — standard | images/photo-10.jpeg -->
-        <img loading="lazy" src="images/thumbs/photo-73.webp" data-full="images/photo-73.jpeg" alt="Anı 10" />
-        <figcaption>
-          <!-- EDIT: CAPTION 10 -->
-          21 Mayıs konserinde, seninle şarkı söylemek, o anın büyüsü... Her şey çok güzeldi.
-        </figcaption>
-      </figure>
-
-      <figure class="tile reveal">
-        <!-- EDIT: GALLERY PHOTO 10 — standard | images/photo-10.jpeg -->
-        <img loading="lazy" src="images/thumbs/photo-70.webp" data-full="images/photo-70.jpeg" alt="Anı 10" />
-        <figcaption>
-          <!-- EDIT: CAPTION 10 -->
-          22 Mayıs Ebru ve Furkan'ın 1 aylık kutlaması. Ebru'nun ilk aşık olduğu o an...
-        </figcaption>
-      </figure>
-
-      <figure class="tile reveal">
-        <!-- EDIT: GALLERY PHOTO 10 — standard | images/photo-10.jpeg -->
-        <img loading="lazy" src="images/thumbs/photo-32.webp" data-full="images/photo-32.jpeg" alt="Anı 10" />
-        <figcaption>
-          <!-- EDIT: CAPTION 10 -->
-          Ne güzel gülmüşsün sevgilim. Ben de çok romantik öpmüşüm :)))))
-        </figcaption>
-      </figure>
-
-
+      <!-- 6. AY KARTI — Gelecekte -->
+      <article class="month-card month-card--awaiting reveal">
+        <div class="month-card-header">
+          <span class="month-num-badge">6. Ay</span>
+          <span class="month-status awaiting">Yakında... ✦</span>
+        </div>
+        <h3>Yarım Yıllık Masal</h3>
+        <p class="month-card-quote">
+          "Zaman bizi acele ettirmesin;<br />
+          güzel olan her şey ağır büyür."<br />
+          Yarım yılımız henüz uzakta; bu sayfa şimdiden ona ayrıldı.
+        </p>
+        <a href="6-ay.html" class="month-card-btn month-card-btn--awaiting">
+          <span>6. Ay Sayfasını Aç</span>
+          <span class="arrow">→</span>
+        </a>
+      </article>
 
     </div>
 
-    <!-- Tüm 83 fotoğrafa giden köprü -->
-    <div class="gallery-more reveal">
-      <a class="more-link" href="anilar.html" aria-label="Tüm 68 anı fotoğrafını gör">
-        <span>Tüm Anıları Gör</span>
-        <span class="more-arrow" aria-hidden="true">→</span>
-        <span class="more-count">83 kare</span>
-      </a>
+    <!-- ANILAR VİTRİNİ / HIGHLIGHT -->
+    <div class="home-anilar-highlight reveal">
+      <div class="home-anilar-info">
+        <h3>Tüm Fotoğraf Arşivimiz</h3>
+        <p>
+          Birlikte gülümsediğimiz, el ele gezdiğimiz, gözlerimizin buluştuğu o en güzel anlardan derlenen 83 fotoğraflık
+          dev aşk galerimiz seni bekliyor.
+        </p>
+      </div>
+      <div class="home-anilar-action">
+        <a href="anilar.html" class="btn-gold">
+          <span>Anılar Galerisini Keşfet (83 Kare)</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- ============ TIMELINE ============ -->
-  <section id="timeline" class="section timeline">
-    <header class="section-head reveal">
-      <p class="overline">Bir Ayın Yolu</p>
-      <h2>Zaman Çizgimiz</h2>
-      <p class="section-sub">Otuz günü işaretleyen küçük duraklar...</p>
-    </header>
-
-    <ol class="timeline-track">
-
-      <li class="milestone reveal">
-        <span class="milestone-icon milestone-icon--dot" aria-hidden="true"></span>
-        <p class="milestone-date"><!-- EDIT: TIMELINE DATE 1 -->23 Nisan</p>
-        <h3 class="milestone-title"><!-- EDIT: TIMELINE TITLE 1 -->İlk Bakış</h3>
-        <p class="milestone-desc"><!-- EDIT: TIMELINE DESC 1 -->Kalbim ne olduğunu anlamadan çoktan sana çevrilmişti.</p>
-      </li>
-
-      <li class="milestone reveal">
-        <span class="milestone-icon milestone-icon--heart" aria-hidden="true"></span>
-        <p class="milestone-date"><!-- EDIT: TIMELINE DATE 2 -->24 Nisan</p>
-        <h3 class="milestone-title"><!-- EDIT: TIMELINE TITLE 2 -->İlk "Seni Seviyorum"</h3>
-        <p class="milestone-desc"><!-- EDIT: TIMELINE DESC 2 -->Üç kelime söyledin, dünyam onlarla yeniden kuruldu.</p>
-      </li>
-
-      <li class="milestone reveal">
-        <span class="milestone-icon milestone-icon--diamond" aria-hidden="true"></span>
-        <p class="milestone-date"><!-- EDIT: TIMELINE DATE 3 -->2 Mayıs</p>
-        <h3 class="milestone-title"><!-- EDIT: TIMELINE TITLE 3 -->O Yağmurlu Gün</h3>
-        <p class="milestone-desc"><!-- EDIT: TIMELINE DESC 3 -->Şehir ıslandı, ben sana sırılsıklam ve biz birbirimize sığındık.</p>
-      </li>
-
-      <li class="milestone reveal">
-        <span class="milestone-icon milestone-icon--ring" aria-hidden="true"></span>
-        <p class="milestone-date"><!-- EDIT: TIMELINE DATE 4 -->8 Mayıs</p>
-        <h3 class="milestone-title"><!-- EDIT: TIMELINE TITLE 4 -->O Özel Gün</h3>
-        <p class="milestone-desc"><!-- EDIT: TIMELINE DESC 4 -->Seninle o en özel anlarımız ne güzellikteydi.</p>
-      </li>
-
-      <li class="milestone reveal">
-        <span class="milestone-icon milestone-icon--star" aria-hidden="true"></span>
-        <p class="milestone-date"><!-- EDIT: TIMELINE DATE 5 -->21 Mayıs</p>
-        <h3 class="milestone-title"><!-- EDIT: TIMELINE TITLE 5 -->Senfoni</h3>
-        <p class="milestone-desc"><!-- EDIT: TIMELINE DESC 5 -->Sana bakarak şarkı söylemek ayrı bir duyguydu.</p>
-      </li>
-
-      <li class="milestone reveal">
-        <span class="milestone-icon milestone-icon--star" aria-hidden="true"></span>
-        <p class="milestone-date"><!-- EDIT: TIMELINE DATE 5 -->22 Mayıs</p>
-        <h3 class="milestone-title"><!-- EDIT: TIMELINE TITLE 5 -->1 Ay Buluşması</h3>
-        <p class="milestone-desc"><!-- EDIT: TIMELINE DESC 5 -->Harika bir gün, senden aşık oldum lafını duymak...</p>
-      </li>
-
-    </ol>
-  </section>
-
-  <!-- ============ MEMORIES ============ -->
+  <!-- ============ HATIRALARIMIZ (GENEL) ============ -->
   <section id="memories" class="section memories">
     <header class="section-head reveal">
       <p class="overline">Bölüm II</p>
-      <h2>Hatıralarımız</h2>
-      <p class="section-sub">Kalbimde sakladığım üç küçük hazine.</p>
+      <h2>Aşkımızın Temelleri</h2>
+      <p class="section-sub">Bizi biz yapan, kalbimizin derinliklerine işleyen değerler.</p>
     </header>
 
     <div class="cards">
-
       <article class="card reveal">
         <div class="card-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
             <path d="M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9z" />
           </svg>
         </div>
-        <h3><!-- EDIT: MEMORY 1 TITLE -->İlk Karşılaşma</h3>
-        <p><!-- EDIT: MEMORY 1 STORY -->
-          Seni ilk gördüğüm an, dünya bir anlığına sustu. Sanki kalbim
-          ne zamandır seni beklediğini ancak o saniyede hatırladı.
-          O bakış, bütün yalnızlığımı bir kalemde sildi.
+        <h3>İlk Bakıştan Sonsuzluğa</h3>
+        <p>
+          Seni gördüğüm o ilk saniye, hayatımın miladı oldu. Bütün yalnızlığımı silip atan,
+          dünyamı ışığıyla dolduran o bakışın sıcaklığı bugün de ilk günkü gibi içimi titretiyor.
         </p>
       </article>
 
@@ -480,11 +388,10 @@
             <path d="M3 12h4l3-8 4 16 3-8h4" />
           </svg>
         </div>
-        <h3><!-- EDIT: MEMORY 2 TITLE -->O İlk 6 saat konuşulan gece</h3>
-        <p><!-- EDIT: MEMORY 2 STORY -->
-          Saatlerce konuştuk, susmadık, susmak istemedik. Sözler bittiğinde
-          gülüşlerimiz konuştu. O gece anladım ki seninle her sessizlik,
-          bir başka şehirden gelen sıcak bir mektup gibi.
+        <h3>Bitmeyen Sohbetler &amp; Huzur</h3>
+        <p>
+          Saatlerce konuşsak da doyamadığımız, sustuğumuzda bile gözlerimizle anlaştığımız o eşsiz bağ.
+          Senin yanındayken dünya susuyor, sadece kalplerimiz konuşuyor.
         </p>
       </article>
 
@@ -494,197 +401,214 @@
             <path d="M12 2l2.39 4.84L20 8l-4 3.9.94 5.5L12 14.77 7.06 17.4 8 11.9 4 8l5.61-1.16L12 2z" />
           </svg>
         </div>
-        <h3><!-- EDIT: MEMORY 3 TITLE -->Bir Ay Sonra</h3>
-        <p><!-- EDIT: MEMORY 3 STORY -->
-          Otuz gün geçti ama sanki seninle hep vardım. Sabahların ışığı
-          artık senin adınla doğuyor, geceler senin sesinle uyuyor.
-          Bu bir ay, bana bir ömrün nasıl başladığını öğretti.
+        <h3>Geleceğe Birlikte Yürümek</h3>
+        <p>
+          Her geçen gün, her geçen ay bize yeni güzellikler getiriyor.
+          Önümüzdeki nice ayları, mevsimleri ve yılları el ele, sevgiyle karşılamak benim en büyük hayalim.
         </p>
       </article>
-
     </div>
   </section>
 
-  <!-- ============ POEMS ============ -->
+  <!-- ============ ŞİİRLER (GENEL) ============ -->
   <section id="poems" class="section poems">
     <header class="section-head reveal">
       <p class="overline">Bölüm III</p>
       <h2>Şiirlerin Diliyle</h2>
-      <p class="section-sub">Söyleyemediklerimi onlar söylesin...</p>
+      <p class="section-sub">Ustaların dizeleri ve kalbimden dökülenler...</p>
     </header>
 
-    <div class="poem-column">
+    <div class="poem-grid">
 
-      <article class="poem poem--left reveal">
-        <div class="poem-ornament">❦</div>
-        <p class="poem-body">
-          Uyuyorsun;<br />
-          saat odanın bir köşesinde fısıltıyla nefes alıyor,<br />
-          perde, rüzgârla dua eder gibi salınıyor —<br />
-          ve ben, bir ay önce hiç bilmediğim bir dilde,<br />
-          ilk defa "ev" kelimesini öğreniyorum<br />
-          senin yastığının kıvrımında.
+      <article class="poem-card poem-card--t1 reveal">
+        <p class="poem-num">I</p>
+        <h3 class="poem-title">Seni Düşünmek</h3>
+        <hr class="poem-rule" />
+        <p class="poem-text">
+          Seni düşünmek güzel şey, ümitli şey,<br />
+          Dünyanın en güzel sesinden<br />
+          En güzel şarkıyı dinlemek gibi bir şey...<br />
+          Fakat artık ümit yetmiyor bana,<br />
+          Ben artık şarkı dinlemek değil,<br />
+          Şarkı söylemek istiyorum.
         </p>
-        <cite class="poem-cite">— Nâzım Hikmet'in izinden, bir ay sonra</cite>
+        <cite class="poem-by">— Nâzım Hikmet</cite>
       </article>
 
-      <hr class="poem-sep" aria-hidden="true" />
-
-      <article class="poem poem--right reveal">
-        <div class="poem-ornament">❦</div>
-        <p class="poem-body">
-          Otuz gün saydım; parmaklarımda izi kaldı,<br />
-          Bir adı söyler gibi söyledim her sabah seni;<br />
-          Takvime değil, yüreğime çentik attım —<br />
-          Gelmediğin saniyelerin yerine.
+      <article class="poem-card poem-card--t2 reveal">
+        <p class="poem-num">II</p>
+        <h3 class="poem-title">Lavinia</h3>
+        <hr class="poem-rule" />
+        <p class="poem-text">
+          Sana gitme demeyeceğim.<br />
+          Üşüyorsun ceketimi al.<br />
+          Günün en güzel saatleri bunlar.<br />
+          Yanımda kal.
         </p>
-        <cite class="poem-cite">— Cahit Sıtkı'nın gölgesinden</cite>
+        <cite class="poem-by">— Özdemir Asaf</cite>
       </article>
 
-      <hr class="poem-sep" aria-hidden="true" />
-
-      <article class="poem poem--left reveal">
-        <div class="poem-ornament">❦</div>
-        <p class="poem-body">
-          Onu sevdiğimi anladığım an,<br />
-          kalbimin bir başkasının adıyla<br />
-          saat tuttuğunu fark ettim.
+      <article class="poem-card poem-card--t3 reveal">
+        <p class="poem-num">III</p>
+        <h3 class="poem-title">Desem Ki</h3>
+        <hr class="poem-rule" />
+        <p class="poem-text">
+          Desem ki vakitlerden bir Nisan akşamıdır,<br />
+          Rüzgârların en ferahlatıcısı senden esiyor,<br />
+          Sende seyrediyorum denizlerin en mavisini,<br />
+          Ormanların en kuytusunu sende gezmekteyim.
         </p>
-        <cite class="poem-cite">— İsimsiz bir romandan</cite>
+        <cite class="poem-by">— Cahit Sıtkı Tarancı</cite>
       </article>
 
-      <hr class="poem-sep" aria-hidden="true" />
-
-      <article class="poem poem--right reveal">
-        <div class="poem-ornament">❦</div>
-        <p class="poem-body">
-          Aşk, iki kalbin aynı sessizliği paylaşabilmesidir;<br />
-          çünkü konuşan kelimeler değil,<br />
-          yan yana atan nabızlardır.
+      <article class="poem-card poem-card--t4 reveal">
+        <p class="poem-num">IV</p>
+        <h3 class="poem-title">Karadut</h3>
+        <hr class="poem-rule" />
+        <p class="poem-text">
+          Karadutum, çatalkaram, çingenem<br />
+          Nar tanem, nur tanem, bir tanem<br />
+          Ağaç isem dalımsın salkım saçak<br />
+          Petek isem balımsın oğulum<br />
+          Günahımsın, vebalimsin.
         </p>
-        <cite class="poem-cite">— Bu sayfanın yazarından :)</cite>
+        <cite class="poem-by">— Bedri Rahmi Eyüboğlu</cite>
       </article>
 
-      <hr class="poem-sep" aria-hidden="true" />
+      <article class="poem-card poem-card--t1 reveal">
+        <p class="poem-num">V</p>
+        <h3 class="poem-title">Göğe Bakma Durağı</h3>
+        <hr class="poem-rule" />
+        <p class="poem-text">
+          İkimiz birden sevinebiliriz göğe bakalım<br />
+          Şu kaçamak ışıklardan şu şeker kamışlarından<br />
+          Bebe dişlerinden güneşlerden yaban otlarından<br />
+          Durmadan harcadığım şu gözlerimi al kurtar<br />
+          Şu aranıp da bulamadığım ellerimi al kurtar
+        </p>
+        <cite class="poem-by">— Turgut Uyar</cite>
+      </article>
 
-      <article class="poem poem--right reveal">
-        <div class="poem-ornament">❦</div>
-        <p class="poem-body">
-                    BEN SANA MECBURUM<br />
+      <article class="poem-card poem-card--t2 reveal">
+        <p class="poem-num">VI</p>
+        <h3 class="poem-title">Gül</h3>
+        <hr class="poem-rule" />
+        <p class="poem-text">
+          Ellerini alıyorum sabaha kadar seviyorum<br />
+          Ellerin beyaz tekrar beyaz tekrar beyaz<br />
+          Ellerinin bu kadar beyaz olmasından korkuyorum<br />
+          Gülü alıyorum yüzüme sürüyorum
+        </p>
+        <cite class="poem-by">— Cemal Süreya</cite>
+      </article>
+
+      <article class="poem-card poem-card--t3 reveal">
+        <p class="poem-num">VII</p>
+        <h3 class="poem-title">Anlatamıyorum</h3>
+        <hr class="poem-rule" />
+        <p class="poem-text">
+          Ağlasam sesimi duyar mısınız,<br />
+          Mısralarımda;<br />
+          Dokunabilir misiniz,<br />
+          Gözyaşlarıma, ellerinizle?<br />
+          Bilmezdim şarkıların bu kadar güzel,<br />
+          Kelimelerinse kifayetsiz olduğunu<br />
+          Bu derde düşmeden önce.
+        </p>
+        <cite class="poem-by">— Orhan Veli Kanık</cite>
+      </article>
+
+      <article class="poem-card poem-card--t4 reveal">
+        <p class="poem-num">VIII</p>
+        <h3 class="poem-title">Seni Sevmek Şehri Sevmekmiş</h3>
+        <hr class="poem-rule" />
+        <p class="poem-text">
+          seni sevmek biraz da şehri sevmekmiş<br />
+          senin geçtiğin sokaklara başka yağıyor yağmur<br />
+          bir vitrine baksam içinde sen varsın<br />
+          ne yapsam nereye dönsem sen çıkıyorsun<br />
+          amatörüm bu işlerde kusura bakma<br />
+          şairler böyle mi der bilmiyorum
+        </p>
+        <cite class="poem-by">— bu sayfanın yazarından :)</cite>
+      </article>
+
+      <article class="poem-card poem-card--t1 reveal">
+        <p class="poem-num">IX</p>
+        <h3 class="poem-title">O Gün</h3>
+        <hr class="poem-rule" />
+        <p class="poem-text">
+          bir bakışta anlaşılır mı derler<br />
+          ben o gün anladım işte<br />
+          ne kadar kalabalıktı hatırlamıyorum<br />
+          ben yalnızca seni saydım<br />
+          gerisi hiç sayılmadı
+        </p>
+        <cite class="poem-by">— bu sayfanın yazarından :)</cite>
+      </article>
+
+      <article class="poem-card poem-card--serial reveal">
+        <span class="poem-serial-badge">Ben Sana Mecburum · I. Kısım · 1–2. kıta</span>
+        <h3 class="poem-title">Ben Sana Mecburum</h3>
+        <hr class="poem-rule" />
+        <p class="poem-text">
           Ben sana mecburum bilemezsin<br />
           Adını mıh gibi aklımda tutuyorum<br />
           Büyüdükçe büyüyor gözlerin<br />
           Ben sana mecburum bilemezsin<br />
-          İçimi seninle ısıtıyorum.<br />
+          İçimi seninle ısıtıyorum<br /><br />
 
           Ağaçlar sonbahara hazırlanıyor<br />
-          Bu şehir o eski İstanbul mudur<br />
+          Bu şehir o eski İstanbul mudur?<br />
           Karanlıkta bulutlar parçalanıyor<br />
           Sokak lambaları birden yanıyor<br />
           Kaldırımlarda yağmur kokusu<br />
-          Ben sana mecburum sen yoksun.<br />
-
-          Sevmek kimi zaman rezilce korkuludur<br />
-          İnsan bir akşam üstü ansızın yorulur<br />
-          Tutsak ustura ağzında yaşamaktan<br />
-          Kimi zaman ellerini kırar tutkusu<br />
-          Bir kaç hayat çıkarır yaşamasından<br />
-          Hangi kapıyı çalsa kimi zaman<br />
-          Arkasında yalnızlığın hınzır uğultusu<br />
-
-          Fatih'te yoksul bir gramofon çalıyor<br />
-          Eski zamanlardan bir cuma çalıyor<br />
-          Durup köşe başında deliksiz dinlesem<br />
-          Sana kullanılmamış bir gök getirsem<br />
-          Haftalar ellerimde ufalanıyor<br />
-          Ne yapsam ne tutsam nereye gitsem<br />
-          Ben sana mecburum sen yoksun.<br />
-
-          Belki haziran da mavi benekli çocuksun<br />
-          Ah seni bilmiyor kimseler bilmiyor<br />
-          Bir şilep sızıyor ıssız gözlerinden<br />
-          Belki Yeşilköy'de uçağa biniyorsun<br />
-          Bütün ıslanmışsın tüylerin ürperiyor<br />
-          Belki körsün kırılmışsın telaş içindesin<br />
-          Kötü rüzgar saçlarını götürüyor<br />
-
-          Ne vakit bir yaşamak düşünsem<br />
-          Bu kurtlar sofrasında belki zor<br />
-          Ayıpsız fakat ellerimizi kirletmeden<br />
-          Ne vakit bir yaşamak düşünsem<br />
-          Sus deyip adınla başlıyorum<br />
-          İçim sıra kımıldıyor gizli denizlerin<br />
-          Hayır başka türlü olmayacak<br />
-          Ben sana mecburum bilemezsin.
+          Ben sana mecburum sen yoksun
         </p>
-        <cite class="poem-cite">— Atilla İlhan</cite>
+        <cite class="poem-by">— Attilâ İlhan</cite>
+        <p class="poem-serial-note">Attila İlhan’ın bu şiiri sitenin ilk üç sayfasına ikişer kıta olarak bölündü. Ana sayfa, 1. ay ve 2. ay sırasıyla okunduğunda şiirin tamamı çıkıyor.</p>
       </article>
 
     </div>
   </section>
 
-  <!-- ============ LETTER ============ -->
+  <!-- ============ MEKTUP (GENEL) ============ -->
   <section id="letter" class="section letter">
     <header class="section-head reveal">
       <p class="overline">Bölüm IV</p>
-      <h2>Sana Bir Mektup</h2>
-      <p class="section-sub">Kâğıdın üstüne döktüğüm kalbim...</p>
+      <h2>Sana Kalbimden Bir Mektup</h2>
+      <p class="section-sub">Zamanın ötesine yazılmış duygular...</p>
     </header>
 
     <article class="paper reveal">
       <div class="paper-inner">
-        <!-- EDIT: LETTER SALUTATION -->
-        <p class="salutation">Herşeyim,</p>
+        <p class="salutation">Canım Sevgilim, Her Şeyim,</p>
 
         <p>
-          <!-- EDIT: LETTER — PARAGRAPH 1 -->
-          Bugün tam bir ay oldu. Otuz gün önce hayatıma girdiğinde,
-          dünyanın bana ne kadar büyük bir hediye verdiğini henüz
-          bilmiyordum. Şimdi biliyorum: Sen, benim en sessiz
-          duamın en güzel cevabısın.
+          23 Nisan günü hayatıma girdiğin o ilk andan beri dünyam bambaşka renklere büründü.
+          Seninle geçen her gün, her ay bana sevginin ne kadar mucizevi ve dönüştürücü bir güç olduğunu öğretti.
+          Sen, benim en güzel dualarımın, en içten dileklerimin ete kemiğe bürünmüş halisin.
         </p>
 
         <p>
-          <!-- EDIT: LETTER — PARAGRAPH 2 -->
-          Gülüşün, sabah kahvemden daha sıcak; sesin, en sevdiğim
-          şarkıdan daha tanıdık. Seninle konuştuğumda zaman uzuyor,
-          sustuğumda bile yanımdaymışsın gibi hissediyorum.
-          Bir ayda bir ömür yaşadım seninle.
+          Gözlerinin içine her baktığımda evimde olduğumu hissediyorum.
+          Sesin bana en büyük huzuru veriyor; gülüşün ise en karanlık günlerimi bile güneşe boğuyor.
+          Seninle yan yana yürümek, hayatın her anını seninle paylaşmak bu dünyadaki en büyük şansım.
         </p>
 
         <p>
-          <!-- EDIT: LETTER — PARAGRAPH 3 -->
-          Sana söz veriyorum: Her sabah seni biraz daha çok seveceğim.
-          Her gece, gökyüzünde bir yıldız sayacağım — birini sana,
-          birini bize, birini de bu güzel başlangıca.
+          Bu sayfalar bizim aşkımızın, paylaştığımız ayların ve biriktirdiğimiz anıların küçük bir aynası.
+          Ama biliyorum ki sana olan sevgim hiçbir sayfaya, hiçbir kelimeye sığmayacak kadar büyük.
         </p>
 
         <p>
-          <!-- EDIT: LETTER — PARAGRAPH 4 -->
-          Bu bir ay, sadece bir başlangıç. Önümüzde sayısız mevsim,
-          sayısız sabah, sayısız "seni seviyorum" var. Ve ben hepsini,
-          tek tek, seninle yaşamak istiyorum.
-        </p>
-
-                <p>
-          <!-- EDIT: LETTER — PARAGRAPH 5 -->
-          İyi ki varsın, iyi ki benimlesin. Seninle geçen her an,
-          benim için bir mucize. Seni tanımak, sevmek ve seninle
-          olmak, hayatımın en güzel serüveni. Daha nice güzel anılar,
-          nice güzel günler, nice güzel yıllar bizim olsun.
-
-          Seni seviyorum, her şeyim. İyi ki varsın, iyi ki benimlesin.
-          O kadar anlatılmaz bir şey ki bu, kelimeler yetmez, ama ben yine de deniyorum:
-          Seni seviyorum, Ebru. Her şeyim, hayatım, kalbim.
-
-          Seninle sonsuzluğa giden bu yolda, el ele, göz göze, kalp kalbe yürümek istiyorum.
-          Bir ayın sonunda, sana olan sevgim sadece büyüdü, derinleşti ve daha da güzelleşti. Sen benim en değerli hazinemsin, en güzel rüyamsın.
+          Sana söz veriyorum; her yeni günde seni dünden daha çok seveceğim.
+          Önümüzdeki tüm aylarda, tüm mevsimlerde ve koca bir ömürde elini hiç bırakmayacağım.
+          İyi ki varsın, iyi ki hayatımdasın, iyi ki benimlesin sevgilim.
         </p>
 
         <p class="signoff">
-          <!-- EDIT: LETTER SIGN-OFF LINE -->
-          Sonsuz sevgiyle,<br />
-          <!-- EDIT: LETTER SIGNATURE -->
+          Sonsuz ve tükenmez aşkımla,<br />
           <span class="signature">Furkan</span>
         </p>
       </div>
@@ -699,22 +623,13 @@
           <path d="M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9z" />
         </svg>
       </div>
-      <p class="footer-line">— Bir ay, bir ömür gibi —</p>
-      <!-- EDIT: ANNIVERSARY DATE -->
-      <p class="footer-date">23 Nisan 2026</p>
+      <p class="footer-line">— Bizim Hikayemiz, Sonsuza Dek —</p>
+      <p class="footer-date">23 Nisan 2026'dan Sonsuzluğa</p>
       <p class="footer-tiny">F &amp; E</p>
     </div>
   </footer>
 
-  <!-- Gallery Modal Overlay -->
-  <div class="gallery-modal" id="gallery-modal" aria-hidden="true" role="dialog" aria-label="Fotoğraf büyük görünüm">
-    <button class="gallery-modal-close" id="gallery-modal-close" aria-label="Kapat">&times;</button>
-    <div class="gallery-modal-content">
-      <img src="" alt="" id="gallery-modal-img" />
-      <p class="gallery-modal-quote" id="gallery-modal-quote"></p>
-    </div>
-  </div>
-
   <script src="script.js"></script>
 </body>
+
 </html>

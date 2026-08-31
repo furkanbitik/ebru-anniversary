@@ -82,9 +82,11 @@
   const loader = document.getElementById("loader");
 
   function hideLoader() {
+    // Sayfada loader yoksa (ör. bekleme modundaki ay sayfaları) yine de
+    // gövde kilidini kaldır; aksi halde body.is-loading kalır ve sayfa kaymaz.
+    document.body.classList.remove("is-loading");
     if (!loader || loader.classList.contains("is-hidden")) return;
     loader.classList.add("is-hidden");
-    document.body.classList.remove("is-loading");
     loader.addEventListener(
       "transitionend",
       () => loader.parentNode && loader.parentNode.removeChild(loader),

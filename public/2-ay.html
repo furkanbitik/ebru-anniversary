@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#2a0a12" />
+  <meta name="description" content="Ebru için — 2. Ay Günlüğümüz" />
+  <title>2. Ay — Ebru'ya</title>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="2. Ay — Ebru için" />
+  <meta property="og:description" content="İki kalp, tek ritim... Büyüyen sevgimizle 60 gün." />
+  <meta property="og:image" content="images/photo-76.jpg" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:site_name" content="2. Ay — Ebru'ya" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23c98a98' d='M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9z'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Lato:wght@300;400;700&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============ SITE TOP NAVIGATION ============ -->
+  <header class="site-header">
+    <div class="site-nav-container">
+      <a href="index.html" class="site-logo">
+        Ebru <span class="heart-icon">♥</span> Furkan
+      </a>
+      <nav class="site-nav" aria-label="Ana Menü">
+        <a href="index.html" class="site-nav-link">Ana Sayfa</a>
+        <a href="1-ay.html" class="site-nav-link">1. Ay</a>
+        <a href="2-ay.html" class="site-nav-link active">2. Ay</a>
+        <a href="3-ay.html" class="site-nav-link">3. Ay</a>
+        <a href="4-ay.html" class="site-nav-link">4. Ay</a>
+        <a href="5-ay.html" class="site-nav-link">5. Ay</a>
+        <a href="6-ay.html" class="site-nav-link">6. Ay</a>
+        <a href="anilar.html" class="site-nav-link badge-anilar">Anılar (83)</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ PASSWORD ENTRY GATE ============ -->
+  <div id="password-gate" class="password-gate" aria-modal="true" role="dialog">
+    <div class="password-gate-bg" aria-hidden="true"></div>
+    <div class="password-gate-overlay" aria-hidden="true"></div>
+    <div class="password-box" id="password-box">
+      <div class="password-heart">♥</div>
+      <h2>Küçük Bir Sır...</h2>
+      <p>Bu özel sayfaya erişmek için şifreyi gir sevgilim... ❤️</p>
+      <form id="password-form" autocomplete="off">
+        <input type="password" id="site-password" placeholder="Şifre" aria-label="Şifre" required />
+        <button type="submit">Giriş Yap</button>
+      </form>
+      <p id="password-error" class="password-error" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <div id="heart-rain" aria-hidden="true"></div>
+
+  <script>
+    (function() {
+      if (sessionStorage.getItem('ebru_auth') === 'true') {
+        document.getElementById('password-gate').style.display = 'none';
+      } else {
+        document.body.classList.add('is-locked');
+      }
+    })();
+  </script>
+
+  <!-- ============ PAGE LOADER ============ -->
+  <div id="loader" class="loader" role="status" aria-live="polite" aria-label="Sayfa yükleniyor">
+    <svg class="loader-rose" viewBox="0 0 120 120" aria-hidden="true">
+      <path class="loader-path loader-path--stem"  d="M60 110 C 60 92, 58 80, 60 66" />
+      <path class="loader-path loader-path--leaf"  d="M60 84 C 50 80, 42 78, 38 86 C 44 90, 54 90, 60 84 Z" />
+      <path class="loader-path loader-path--outer" d="M60 66 C 36 66, 30 46, 46 36 C 60 28, 80 34, 84 50 C 88 66, 74 78, 60 76 C 48 74, 42 66, 46 56 C 50 48, 60 46, 66 52 C 72 58, 70 66, 62 66" />
+      <path class="loader-path loader-path--bud"   d="M58 60 C 54 56, 58 50, 64 54 C 68 58, 64 62, 58 60 Z" />
+    </svg>
+    <p class="loader-word">2. Ay</p>
+  </div>
+
+  <h1 class="visually-hidden">2. Ay — Ebru için ikinci ay günlüğü</h1>
+
+  <!-- GLOBAL FLOATING HEARTS -->
+  <div id="hearts-global" aria-hidden="true">
+    <span style="left:  4%; font-size: 1.10rem; color: rgba(212,168,83,0.12); --drift:  12px; animation-duration: 22s; animation-delay:  -3s;">♥</span>
+    <span style="left: 12%; font-size: 1.55rem; color: rgba(139, 26,58,0.14); --drift:  18px; animation-duration: 19s; animation-delay:  -7s;">♥</span>
+    <span style="left: 25%; font-size: 0.70rem; color: rgba(201,149,106,0.10); --drift: -12px; animation-duration: 21s; animation-delay: -15s;">♥</span>
+    <span style="left: 38%; font-size: 1.80rem; color: rgba(201,149,106,0.10); --drift:  11px; animation-duration: 32s; animation-delay: -22s;">♥</span>
+    <span style="left: 52%; font-size: 2.20rem; color: rgba(201,149,106,0.10); --drift:  13px; animation-duration: 38s; animation-delay:  -1s;">♥</span>
+    <span style="left: 68%; font-size: 1.70rem; color: rgba(201,149,106,0.10); --drift:  12px; animation-duration: 33s; animation-delay:  -4s;">♥</span>
+    <span style="left: 84%; font-size: 1.60rem; color: rgba(212,168,83,0.12); --drift:  13px; animation-duration: 31s; animation-delay: -16s;">♥</span>
+    <span style="left: 95%; font-size: 1.50rem; color: rgba(201,149,106,0.10); --drift: -12px; animation-duration: 36s; animation-delay:  -7s;">♥</span>
+  </div>
+
+  <div class="petals" aria-hidden="true">
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+  </div>
+
+  <div class="rose-petals" aria-hidden="true">
+    <span class="rose"></span><span class="rose"></span><span class="rose"></span>
+    <span class="rose"></span><span class="rose"></span>
+  </div>
+
+  <nav class="side-nav" aria-label="Bölümler">
+    <a href="#hero" class="dot" data-label="Başlangıç"></a>
+    <a href="#gallery" class="dot" data-label="2. Ay Anıları"></a>
+    <a href="#timeline" class="dot" data-label="Zaman Çizgisi"></a>
+    <a href="#memories" class="dot" data-label="Hatıralar"></a>
+    <a href="#poems" class="dot" data-label="Şiirler"></a>
+    <a href="#letter" class="dot" data-label="Mektup"></a>
+    <a href="#footer" class="dot" data-label="Son"></a>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section id="hero" class="hero">
+    <p class="hero-label">SEVGİLİ EBRU'YA · İKİNCİ AY</p>
+
+    <div class="hero-left">
+      <p class="hero-romantic">
+        İki kalp, tek bir ritimle attı;<br />
+        ikinci ayımızı da sevgiyle tamamladık...
+      </p>
+
+      <div class="hero-counter">
+        <span class="hero-counter-num">2</span><span class="hero-counter-unit">.Ay</span>
+        <p class="hero-counter-sub">TAMAMLANAN İKİNCİ AY</p>
+      </div>
+
+      <ul class="hero-stats">
+        <li><span class="stat-icon" aria-hidden="true">♥</span> Geride bıraktığımız 60 gün, kalbimin en güzel durağı</li>
+        <li><span class="stat-icon" aria-hidden="true">♥</span> Paylaşılan her kahkaha, büyüyen kocaman bir bağ</li>
+        <li><span class="stat-icon" aria-hidden="true">♥</span> Yanındayken zamanın nasıl aktığını unuttuğum anlar</li>
+      </ul>
+    </div>
+
+    <!-- Photo -->
+    <div class="hero-photo-wrapper">
+      <img src="images/thumbs/photo-76.webp" data-full="images/photo-76.jpg" alt="Furkan ve Ebru — 4 Haziran 2026" />
+    </div>
+
+    <div class="hero-right">
+      <blockquote class="hero-note">
+        İkinci ayımızda anladım ki; aşk sadece bir başlangıç heyecanı değil,
+        her geçen gün birbirimizin gözlerinde derinleşen koca bir huzurmuş.
+        İyi ki yanımdasın sevgilim.
+      </blockquote>
+      <br/>
+
+      <p class="hero-oneliner">
+        Gözlerinin değdiği her yer güzelleşiyor,<br />
+        varlığın hayatıma en güzel baharı getiriyor.
+      </p>
+
+      <hr class="hero-divider" aria-hidden="true" />
+
+      <p class="hero-date">23 MAYIS - 23 HAZİRAN 2026 <span class="hero-date-star" aria-hidden="true">✦</span></p>
+      <p class="month-complete-seal"><span aria-hidden="true">✦</span> Tamamlandı · 60 Gün <span aria-hidden="true">✦</span></p>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section id="gallery" class="section gallery">
+    <header class="section-head reveal">
+      <p class="overline">Bölüm I</p>
+      <h2>2. Ayın İzleri</h2>
+      <p class="section-sub">İkinci ayımızdan en özel kareler...</p>
+    </header>
+
+    <div class="masonry">
+      <figure class="tile tile--tall reveal">
+        <img loading="lazy" src="images/thumbs/photo-88.webp" data-full="images/photo-88.jpg" alt="2. Ay Anı 1" />
+        <figcaption>
+          Güneşli bir günde, yan yana oturup hayatı konuştuğumuz o huzurlu an.
+        </figcaption>
+      </figure>
+
+      <!-- 1. aydan taşındı — EXIF ile doğrulandı: 4 Haziran 2026, 11:06 -->
+      <figure class="tile reveal">
+        <img loading="lazy" src="images/thumbs/photo-75.webp" data-full="images/photo-75.jpg" alt="2. Ay Anı 2" />
+        <figcaption>
+          Aşkın her anını yaşadığımız bir gün daha. Dünyanın en güzel gülüşü senin gülüşün.
+        </figcaption>
+      </figure>
+
+      <figure class="tile tile--wide reveal">
+        <img loading="lazy" src="images/thumbs/photo-85.webp" data-full="images/photo-85.jpg" alt="2. Ay Anı 3" />
+        <figcaption>
+          Seninle geçirilen her dakika ömrüme ömür katıyor sevgilim.
+        </figcaption>
+      </figure>
+
+      <figure class="tile reveal">
+        <img loading="lazy" src="images/thumbs/photo-74.webp" data-full="images/photo-74.jpg" alt="2. Ay Anı 4" />
+        <figcaption>
+          Birlikte gülümsediğimiz her kare sonsuza dek kalbime kazınıyor.
+        </figcaption>
+      </figure>
+
+      <figure class="tile tile--tall reveal">
+        <img loading="lazy" src="images/thumbs/photo-86.webp" data-full="images/photo-86.jpg" alt="2. Ay Anı 5" />
+        <figcaption>
+          Elini tuttuğum an tüm dünya sussun, sadece senin kalbinin sesi kalsın istiyorum.
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="gallery-more reveal">
+      <a class="more-link" href="anilar.html" aria-label="Tüm anıları gör">
+        <span>Tüm Fotoğraf Arşivi</span>
+        <span class="more-arrow" aria-hidden="true">→</span>
+        <span class="more-count">83 kare</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ TIMELINE ============ -->
+  <section id="timeline" class="section timeline">
+    <header class="section-head reveal">
+      <p class="overline">İkinci Ayın Yolu</p>
+      <h2>Zaman Çizgimiz</h2>
+      <p class="section-sub">Altmışıncı güne kadar kalbimizin attığı adımlar...</p>
+    </header>
+
+    <ol class="timeline-track">
+      <li class="milestone reveal">
+        <span class="milestone-icon milestone-icon--heart" aria-hidden="true"></span>
+        <p class="milestone-date">24 Mayıs</p>
+        <h3 class="milestone-title">İkinci Ayın İlk Günü</h3>
+        <p class="milestone-desc">İlk ayı geride bıraktık ve anladık ki bu daha başlangıçmış. İkinci ayımıza, ilk günkü heyecanla adım attık.</p>
+      </li>
+
+      <li class="milestone reveal">
+        <span class="milestone-icon milestone-icon--star" aria-hidden="true"></span>
+        <p class="milestone-date">4 Haziran</p>
+        <h3 class="milestone-title">Baştan Sona Birlikte Bir Gün</h3>
+        <p class="milestone-desc">
+          Bir kafede başladı, vitrinlerin önünde aynalara gülümsedik, gökyüzü o gün
+          sırf bize masmaviydi. Sabahtan akşama kadar hiç susmadık, hiç sıkılmadık —
+          bütün gün elimi bırakmadın.
+        </p>
+
+      </li>
+
+            <li class="milestone reveal">
+        <span class="milestone-icon milestone-icon--diamond" aria-hidden="true"></span>
+        <p class="milestone-date">23 Haziran</p>
+        <h3 class="milestone-title">2. Ay Tamamlandı</h3>
+        <p class="milestone-desc">Altmış günü doldurduk. Bu iki ayda öğrendim ki sevgi eskimiyormuş; her sabah biraz daha yeni, biraz daha derin oluyormuş.</p>
+      </li>
+
+      <li class="milestone reveal">
+        <span class="milestone-icon milestone-icon--heart" aria-hidden="true"></span>
+        <p class="milestone-date">Haziran Sonu</p>
+        <h3 class="milestone-title">Okullar Kapandı</h3>
+        <p class="milestone-desc">
+          Yollarımızın arasına bir süreliğine kilometreler girdi. Ama o günlerde anladım ki
+          seni özlemek bile güzelmiş; çünkü özlenecek biri olduğunu bilmek, dünyanın
+          en tatlı huzursuzluğuymuş.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ MEMORIES ============ -->
+  <section id="memories" class="section memories">
+    <header class="section-head reveal">
+      <p class="overline">Bölüm II</p>
+      <h2>2. Ay Hatıraları</h2>
+      <p class="section-sub">Bu ay kalbimize kazınan özel anlar.</p>
+    </header>
+
+    <div class="cards">
+      <article class="card reveal">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9z" />
+          </svg>
+        </div>
+        <h3>Birlikte Büyüyen Huzur</h3>
+        <p>
+          Artık sadece âşık değiliz; birbirimizin en güvenli limanıyız.
+          Sen yanımdayken içimdeki bütün telaş diniyor, dünya bir adım geri çekiliyor.
+          Bu ay öğrendim ki asıl aşk, kalbin hızlandığı değil; huzur bulduğu yerdeymiş.
+        </p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M3 12h4l3-8 4 16 3-8h4" />
+          </svg>
+        </div>
+        <h3>Tatlı Rutinlerimiz</h3>
+        <p>
+          Her sabah buluşmalarımız, her akşam telefonun diğer ucunda birbirimizi hissetmek...
+          Küçük ama anlamlı ritüellerimizle dolu bir ay.
+        </p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M12 2l2.39 4.84L20 8l-4 3.9.94 5.5L12 14.77 7.06 17.4 8 11.9 4 8l5.61-1.16L12 2z" />
+          </svg>
+        </div>
+        <h3>Mesafeye Rağmen</h3>
+        <p>
+          Okulların kapanmasıyla aramıza kilometreler girdi.
+          Ama her akşam telefonun diğer ucunda sesin olduğu sürece,
+          o kilometreler hiçbir şey ifade etmedi. Meğer seni sevmek için
+          yanımda olman gerekmiyormuş; var olman yetiyormuş.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ POEMS ============ -->
+  <section id="poems" class="section poems">
+    <header class="section-head reveal">
+      <p class="overline">Bölüm III</p>
+      <h2>Şiirlerin Diliyle</h2>
+      <p class="section-sub">İkinci ayın, yazın ve mesafenin dizeleri...</p>
+    </header>
+
+    <div class="poem-grid">
+
+      <article class="poem-card poem-card--t1 reveal">
+        <p class="poem-num">I</p>
+        <h3 class="poem-title">Karıma Mektup</h3>
+        <hr class="poem-rule" />
+        <p class="poem-text">
+          Karım benim!<br />
+          İyi yürekli,<br />
+          altın renkli,<br />
+          gözleri baldan tatlı arım benim...
+        </p>
+        <cite class="poem-by">— Nâzım Hikmet</cite>
+      </article>
+
+      <article class="poem-card poem-card--t2 reveal">
+        <p class="poem-num">II</p>
+        <h3 class="poem-title">Biliyorum Sana Giden Yollar Kapalı</h3>
+        <hr class="poem-rule" />
+        <p class="poem-text">
+          Uyandım uyandım, hep seni düşündüm<br />
+          Yalnız seni, yalnız senin gözlerini<br />
+          <span style="opacity:.55">…</span><br />
+          Kaç kez sana uzaktan baktım 5.45 vapurunda;<br />
+          Hangi şarkıyı duysam, bizimçin söylenmiş sanki
+        </p>
+        <cite class="poem-by">— Cemal Süreya</cite>
+      </article>
+
+      <article class="poem-card poem-card--t3 reveal">
+        <p class="poem-num">III</p>
+        <h3 class="poem-title">Sesini Duymadığım Gün</h3>
+        <hr class="poem-rule" />
+        <p class="poem-text">
+          Sesini duymadığım gün yaşanmış değil,<br />
+          açan çiçek değil, öten kuş değil;<br />
+          yüzünü görmediğim gün<br />
+          içimde yıldızlar sönük, güneşler güneş değil.
+        </p>
+        <cite class="poem-by">— Ümit Yaşar Oğuzcan</cite>
+      </article>
+
+      <article class="poem-card poem-card--t4 reveal">
+        <p class="poem-num">IV</p>
+        <h3 class="poem-title">Nazlı Yârim</h3>
+        <hr class="poem-rule" />
+        <p class="poem-text">
+          Kimseye soramadığım,<br />
+          Doyunca saramadığım,<br />
+          Görmesem duramadığım<br />
+          Nazlı yârim...
+        </p>
+        <cite class="poem-by">— Sabahattin Ali</cite>
+      </article>
+
+      <article class="poem-card poem-card--t1 reveal">
+        <p class="poem-num">V</p>
+        <h3 class="poem-title">Altmışıncı Gün</h3>
+        <hr class="poem-rule" />
+        <p class="poem-text">
+          altmışıncı günde öğrendim<br />
+          sevginin eskimediğini<br />
+          her sabah biraz daha yeni<br />
+          her akşam biraz daha derin<br />
+          alışılmıyormuş insan sana
+        </p>
+        <cite class="poem-by">— bu sayfanın yazarından :)</cite>
+      </article>
+
+      <article class="poem-card poem-card--t2 reveal">
+        <p class="poem-num">VI</p>
+        <h3 class="poem-title">Girsin</h3>
+        <hr class="poem-rule" />
+        <p class="poem-text">
+          aramıza kilometreler girdi diyorlar<br />
+          girsin<br />
+          ben senin uyandığın saatte uyanıyorum<br />
+          aynı gökyüzüne bakıyoruz ikimiz de<br />
+          uzaklık dedikleri<br />
+          aynı anda özlemekmiş sadece
+        </p>
+        <cite class="poem-by">— bu sayfanın yazarından :)</cite>
+      </article>
+
+      <article class="poem-card poem-card--t3 reveal">
+        <p class="poem-num">VII</p>
+        <h3 class="poem-title">Yaz Geldi</h3>
+        <hr class="poem-rule" />
+        <p class="poem-text">
+          yaz geldi<br />
+          her şey senin şalının rengine döndü<br />
+          gökyüzü ödünç almış sanki o rengi<br />
+          ne vakit maviye baksam<br />
+          içimden adını geçiriyorum
+        </p>
+        <cite class="poem-by">— bu sayfanın yazarından :)</cite>
+      </article>
+
+      <article class="poem-card poem-card--serial reveal">
+        <span class="poem-serial-badge">Ben Sana Mecburum · III. Kısım · 5–6. kıta</span>
+        <h3 class="poem-title">Ben Sana Mecburum</h3>
+        <hr class="poem-rule" />
+        <p class="poem-text">
+          Belki Haziranda mavi benekli çocuksun<br />
+          Ah seni bilmiyor kimseler bilmiyor<br />
+          Bir şilep sızıyor ıssız gözlerinden<br />
+          Belki Yeşilköy’de uçağa biniyorsun<br />
+          Bütün ıslanmışsın tüylerin ürperiyor<br />
+          Belki körsün kırılmışsın telâş içindesin<br />
+          Kötü rüzgâr saçlarını götürüyor<br /><br />
+
+          Ne vakit bir yaşamak düşünsem<br />
+          Bu kurtlar sofrasında belki zor<br />
+          Ayıpsız fakat ellerimizi kirletmeden<br />
+          Ne vakit bir yaşamak düşünsem<br />
+          Sus deyip adınla başlıyorum<br />
+          İçim sıra kımıldıyor gizli denizlerin<br />
+          Hayır başka türlü olmayacak<br />
+          Ben sana mecburum bilemezsin..
+        </p>
+        <cite class="poem-by">— Attilâ İlhan</cite>
+        <p class="poem-serial-note">Attila İlhan’ın bu şiiri sitenin ilk üç sayfasına ikişer kıta olarak bölündü. Ana sayfa, 1. ay ve 2. ay sırasıyla okunduğunda şiirin tamamı çıkıyor.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ LETTER ============ -->
+  <section id="letter" class="section letter">
+    <header class="section-head reveal">
+      <p class="overline">Bölüm IV</p>
+      <h2>2. Ay Mektubu</h2>
+      <p class="section-sub">İkinci ayın şerefine...</p>
+    </header>
+
+    <article class="paper reveal">
+      <div class="paper-inner">
+        <p class="salutation">Gözümün Nuru Ebru'm,</p>
+
+        <p>
+          Bugün tam altmış günü doldurduk. İnsan "iki ay" deyince kısa bir zaman sanıyor ama ben bu iki ayda seninle kaç kere gülmüşüm, gözlerinin içine bakıp kaç kere huzurla susmuşum, gerçekten sayamıyorum. İlk gün kalbimi sarsan o deli heyecan hiç gitmedi; sadece yanına usulca sokulan, içimi ısıtan sıcacık bir güven gelip oturdu. Sen benim bu hayatta sığındığım en güzel liman oldun.
+        </p>
+
+        <p>
+          4 Haziran'ı ömrüm boyunca unutmayacağım. Sabah buluştuğumuz o ilk andan, akşam ayrılmak zorunda kaldığımız o son saniyeye kadar zaman nasıl geçti anlamadım. Yanından ayrılırken bile hâlâ konuşacak, birbirimize anlatacak onlarca şeyimiz vardı. O gün çok net fark ettim ki seninle sıradan bir gün diye bir şey yok. En basit, en sade anımız bile başkasının bir ömür arayıp bulamadığı en özel günü kadar güzel.
+        </p>
+
+        <p>
+          Sonra okullar kapandı ve araya yollar, şehirler, o zor mesafeler girdi. Doğrusunu istersen sensizlik zordu, hâlâ da zor... Ama bu günler bana çok kıymetli bir şey öğretti: Seni yanımda hissetmem için illa fiziken yanımda olman gerekmiyormuş. Mesafeler henüz bitmedi, biliyorum; yollar hâlâ aramızda uzanıyor. Ama aradaki kilometreler ne kadar artarsa artsın, kalbimdeki yerinin hep aynı yakınlıkta, hatta her geçen gün daha da derinlerde kaldığını görmek bana güç veriyor. Bu uzaklık geçici, ama bendeki sen sonuna kadar gerçek.
+        </p>
+
+        <p>
+          İyi ki varsın Ebru'm. Ben artık takvimdeki sayılara ya da geçen aylara bakmıyorum; zamanın da, mesafelerin de anlamsız kaldığı o güzel yerde seviyorum seni. Şimdilik sadece ellerini yeniden tutacağım, gözlerinin içine bakıp zamanı durduracağım o ilk anı düşlüyorum. Sen sadece elimi bırakma yeter.
+        </p>
+
+        <p class="signoff">
+          Sonsuz sevgimle,<br />
+          <span class="signature">Furkan</span>
+        </p>
+              </div>
+            </article>
+          </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer id="footer" class="section footer">
+    <div class="footer-inner reveal">
+      <div class="heart" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9z" />
+        </svg>
+      </div>
+      <p class="footer-line">— İki ayı tamamladık, yolumuz sonsuza —</p>
+      <p class="footer-date">23 Mayıs — 23 Haziran 2026 · Tamamlandı</p>
+      <p class="footer-tiny">F &amp; E</p>
+    </div>
+  </footer>
+
+  <div class="gallery-modal" id="gallery-modal" aria-hidden="true" role="dialog" aria-label="Fotoğraf büyük görünüm">
+    <button class="gallery-modal-close" id="gallery-modal-close" aria-label="Kapat">&times;</button>
+    <div class="gallery-modal-content">
+      <img src="" alt="" id="gallery-modal-img" />
+      <p class="gallery-modal-quote" id="gallery-modal-quote"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
