@@ -1,5 +1,7 @@
-name: Cloudflare Workers
+name: Deploy
 
+# main'e her push'ta site Cloudflare Workers'a yayınlanır.
+# Gereken tek şey: CLOUDFLARE_API_TOKEN adlı repository secret.
 on:
   push:
     branches: [main]
@@ -9,10 +11,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      # wrangler.jsonc icindeki assets.directory (./public) yayinlanir.
-      # Derleme adimi yok: proje statik.
+      # Proje statik; derleme adımı yok.
+      # wrangler.jsonc içindeki assets.directory (./public) yayınlanır.
       - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
