@@ -2914,3 +2914,74 @@ body {
     justify-content: center;
   }
 }
+
+/* ====================================================================
+   MENÜ SAYACI — birlikte geçen süre rozeti
+   ==================================================================== */
+.site-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  padding: 0.34rem 0.85rem;
+  border: 1px solid rgba(212, 168, 83, 0.35);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(139, 26, 58, 0.28), rgba(212, 168, 83, 0.1));
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cream);
+  white-space: nowrap;
+  box-shadow: 0 0 18px rgba(139, 26, 58, 0.2);
+}
+
+.site-counter[hidden] { display: none; }
+
+.site-counter-heart {
+  color: #ff3b68;
+  font-size: 0.85rem;
+  line-height: 1;
+  animation: logoPulse 1.8s infinite ease-in-out;
+}
+
+.site-counter-value {
+  background: linear-gradient(180deg, var(--cream) 0%, var(--gold-pale) 70%, var(--gold-soft) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Dar ekran: logo ile sayaç aynı satırda kalsın, menü alta sarsın */
+@media (max-width: 860px) {
+  .site-nav-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.4rem;
+  }
+  .site-counter {
+    order: 2;
+    font-size: 0.63rem;
+    padding: 0.26rem 0.6rem;
+    letter-spacing: 0.08em;
+  }
+  .site-nav {
+    order: 3;
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .site-counter {
+    font-size: 0.58rem;
+    padding: 0.24rem 0.5rem;
+    gap: 0.28rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-counter-heart { animation: none; }
+}

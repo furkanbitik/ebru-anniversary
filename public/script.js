@@ -369,6 +369,43 @@
     });
   }
 
+
+  /* ================================================================
+     MENÜ SAYACI — birlikte geçen toplam süre
+     Aradaki ayrı geçen dönem toplama dahil edilmez.
+     ================================================================ */
+  (function initSiteCounter() {
+    var el = document.getElementById("site-counter");
+    if (!el) return;
+    var out = el.querySelector(".site-counter-value");
+    if (!out) return;
+
+    // Sayılan dönemler (ay değerleri 0 tabanlı: 3 = Nisan, 5 = Haziran, 7 = Ağustos)
+    var BOLUM1_BAS = new Date(2026, 3, 23, 0, 0, 0);   // 23 Nisan 2026
+    var BOLUM1_SON = new Date(2026, 5, 23, 0, 0, 0);   // 23 Haziran 2026
+    var BOLUM2_BAS = new Date(2026, 7, 24, 0, 0, 0);   // 24 Ağustos 2026 — yeniden başlangıç
+    // 23 Haziran – 24 Ağustos arası hesaba katılmaz.
+
+    var bolum1 = BOLUM1_SON - BOLUM1_BAS;
+
+    function guncelle() {
+      var simdi = new Date();
+      var bolum2 = Math.max(0, simdi - BOLUM2_BAS);
+      var toplam = bolum1 + bolum2;
+
+      var gun  = Math.floor(toplam / 86400000);
+      var saat = Math.floor((toplam % 86400000) / 3600000);
+
+      out.textContent = gun + " gün " + saat + " saat";
+      el.setAttribute("title", "Birlikte geçen toplam süre: " + gun + " gün " + saat + " saat");
+      el.setAttribute("aria-label", "Birlikte geçen toplam süre: " + gun + " gün " + saat + " saat");
+      el.hidden = false;
+    }
+
+    guncelle();
+    setInterval(guncelle, 60000);
+  })();
+
   // Initialize features
   generateHeartRain();
 })();
