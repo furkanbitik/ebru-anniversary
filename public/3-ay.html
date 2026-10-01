@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -13,13 +14,17 @@
   <meta property="og:locale" content="tr_TR" />
   <meta property="og:site_name" content="3. Ay — Ebru'ya" />
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23c98a98' d='M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9z'/%3E%3C/svg%3E" />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23c98a98' d='M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9z'/%3E%3C/svg%3E" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Lato:wght@300;400;700&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Lato:wght@300;400;700&family=Dancing+Script:wght@500;700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
   <!-- ============ SITE TOP NAVIGATION ============ -->
@@ -66,7 +71,7 @@
   <div id="heart-rain" aria-hidden="true"></div>
 
   <script>
-    (function() {
+    (function () {
       if (sessionStorage.getItem('ebru_auth') === 'true') {
         document.getElementById('password-gate').style.display = 'none';
       } else {
@@ -78,10 +83,11 @@
   <!-- ============ PAGE LOADER ============ -->
   <div id="loader" class="loader" role="status" aria-live="polite" aria-label="Sayfa yükleniyor">
     <svg class="loader-rose" viewBox="0 0 120 120" aria-hidden="true">
-      <path class="loader-path loader-path--stem"  d="M60 110 C 60 92, 58 80, 60 66" />
-      <path class="loader-path loader-path--leaf"  d="M60 84 C 50 80, 42 78, 38 86 C 44 90, 54 90, 60 84 Z" />
-      <path class="loader-path loader-path--outer" d="M60 66 C 36 66, 30 46, 46 36 C 60 28, 80 34, 84 50 C 88 66, 74 78, 60 76 C 48 74, 42 66, 46 56 C 50 48, 60 46, 66 52 C 72 58, 70 66, 62 66" />
-      <path class="loader-path loader-path--bud"   d="M58 60 C 54 56, 58 50, 64 54 C 68 58, 64 62, 58 60 Z" />
+      <path class="loader-path loader-path--stem" d="M60 110 C 60 92, 58 80, 60 66" />
+      <path class="loader-path loader-path--leaf" d="M60 84 C 50 80, 42 78, 38 86 C 44 90, 54 90, 60 84 Z" />
+      <path class="loader-path loader-path--outer"
+        d="M60 66 C 36 66, 30 46, 46 36 C 60 28, 80 34, 84 50 C 88 66, 74 78, 60 76 C 48 74, 42 66, 46 56 C 50 48, 60 46, 66 52 C 72 58, 70 66, 62 66" />
+      <path class="loader-path loader-path--bud" d="M58 60 C 54 56, 58 50, 64 54 C 68 58, 64 62, 58 60 Z" />
     </svg>
     <p class="loader-word">3. Ay</p>
   </div>
@@ -90,14 +96,22 @@
 
   <!-- GLOBAL FLOATING HEARTS -->
   <div id="hearts-global" aria-hidden="true">
-    <span style="left:  4%; font-size: 1.10rem; color: rgba(212,168,83,0.12); --drift:  12px; animation-duration: 22s; animation-delay:  -3s;">♥</span>
-    <span style="left: 12%; font-size: 1.55rem; color: rgba(139, 26,58,0.14); --drift:  18px; animation-duration: 19s; animation-delay:  -7s;">♥</span>
-    <span style="left: 25%; font-size: 0.70rem; color: rgba(201,149,106,0.10); --drift: -12px; animation-duration: 21s; animation-delay: -15s;">♥</span>
-    <span style="left: 38%; font-size: 1.80rem; color: rgba(201,149,106,0.10); --drift:  11px; animation-duration: 32s; animation-delay: -22s;">♥</span>
-    <span style="left: 52%; font-size: 2.20rem; color: rgba(201,149,106,0.10); --drift:  13px; animation-duration: 38s; animation-delay:  -1s;">♥</span>
-    <span style="left: 68%; font-size: 1.70rem; color: rgba(201,149,106,0.10); --drift:  12px; animation-duration: 33s; animation-delay:  -4s;">♥</span>
-    <span style="left: 84%; font-size: 1.60rem; color: rgba(212,168,83,0.12); --drift:  13px; animation-duration: 31s; animation-delay: -16s;">♥</span>
-    <span style="left: 95%; font-size: 1.50rem; color: rgba(201,149,106,0.10); --drift: -12px; animation-duration: 36s; animation-delay:  -7s;">♥</span>
+    <span
+      style="left:  4%; font-size: 1.10rem; color: rgba(212,168,83,0.12); --drift:  12px; animation-duration: 22s; animation-delay:  -3s;">♥</span>
+    <span
+      style="left: 12%; font-size: 1.55rem; color: rgba(139, 26,58,0.14); --drift:  18px; animation-duration: 19s; animation-delay:  -7s;">♥</span>
+    <span
+      style="left: 25%; font-size: 0.70rem; color: rgba(201,149,106,0.10); --drift: -12px; animation-duration: 21s; animation-delay: -15s;">♥</span>
+    <span
+      style="left: 38%; font-size: 1.80rem; color: rgba(201,149,106,0.10); --drift:  11px; animation-duration: 32s; animation-delay: -22s;">♥</span>
+    <span
+      style="left: 52%; font-size: 2.20rem; color: rgba(201,149,106,0.10); --drift:  13px; animation-duration: 38s; animation-delay:  -1s;">♥</span>
+    <span
+      style="left: 68%; font-size: 1.70rem; color: rgba(201,149,106,0.10); --drift:  12px; animation-duration: 33s; animation-delay:  -4s;">♥</span>
+    <span
+      style="left: 84%; font-size: 1.60rem; color: rgba(212,168,83,0.12); --drift:  13px; animation-duration: 31s; animation-delay: -16s;">♥</span>
+    <span
+      style="left: 95%; font-size: 1.50rem; color: rgba(201,149,106,0.10); --drift: -12px; animation-duration: 36s; animation-delay:  -7s;">♥</span>
   </div>
 
   <div class="petals" aria-hidden="true">
@@ -136,9 +150,9 @@
       </div>
 
       <ul class="hero-stats">
-        <li><span class="stat-icon" aria-hidden="true">♥</span> 23 Haziran'da okul bitti, ikimiz de memleketlerimize döndük</li>
+        <li><span class="stat-icon" aria-hidden="true">♥</span> Haziran'da okul bitti, hasret başladı</li>
         <li><span class="stat-icon" aria-hidden="true">♥</span> Bir ay boyunca yüzünü yalnızca telefonda gördüm</li>
-        <li><span class="stat-icon" aria-hidden="true">♥</span> Bu aydan tek bir fotoğrafımız bile yok</li>
+        <li><span class="stat-icon" aria-hidden="true">♥</span> Bu aydan maalesef bir fotoğrafımız yok</li>
       </ul>
     </div>
 
@@ -160,30 +174,34 @@
         border-radius: 12px;
         border: 1px solid rgba(212, 168, 83, 0.2);
       ">
-        <span style="font-family: 'Dancing Script', cursive; font-size: 2.1rem; line-height: 1.25; color: #d4af37;">Bu ay hiç<br />fotoğrafımız yok</span>
-        <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: #e8cfc4; opacity: 0.85;">Aynı karede değildik.<br />Bu ayı sesinden hatırlıyorum.</span>
+        <span style="font-family: 'Dancing Script', cursive; font-size: 2.1rem; line-height: 1.25; color: #d4af37;">Bu
+          ay hiç<br />fotoğrafımız yok</span>
+        <span
+          style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: #e8cfc4; opacity: 0.85;">Aynı
+          karede değildik.<br />Bu ayı sesinden hatırlıyorum.</span>
       </div>
     </div>
 
     <div class="hero-right">
       <blockquote class="hero-note">
-        Okul bitince sen kendi memleketine gittin, ben kendiminkine. İlk birkaç gün bir şey
+        Okul bitince sen Eskişehir de kaldın, ben Bartın'da. İlk birkaç gün bir şey
         eksikmiş gibi geldi ama adını koyamadım. Sonra anladım: Sabahları seni göreceğimi bilerek
         uyanmıyordum artık. Günü bir şekilde bitiriyor, akşamı bekliyordum. Çünkü akşam
         seni arayabiliyordum.
       </blockquote>
-      <br/>
+      <br />
 
       <p class="hero-oneliner">
         Bu sayfada hiç fotoğraf yok Ebru'm.<br />
         Bu ay bana senden kalan tek şey sesindi,<br />
-        o da yetti bana bir ay boyunca.
+        o da iyi geldi bana bir ay boyunca.
       </p>
 
       <hr class="hero-divider" aria-hidden="true" />
 
       <p class="hero-date">23 HAZİRAN - 23 TEMMUZ 2026 <span class="hero-date-star" aria-hidden="true">✦</span></p>
-      <p class="month-complete-seal"><span aria-hidden="true">✦</span> Tamamlandı · 90 Gün <span aria-hidden="true">✦</span></p>
+      <p class="month-complete-seal"><span aria-hidden="true">✦</span> Tamamlandı · 90 Gün <span
+          aria-hidden="true">✦</span></p>
     </div>
   </section>
 
@@ -198,7 +216,7 @@
     <ol class="timeline-track">
       <li class="milestone reveal">
         <span class="milestone-icon milestone-icon--heart" aria-hidden="true"></span>
-        <p class="milestone-date">23 Haziran</p>
+        <p class="milestone-date">1 Temmuz</p>
         <h3 class="milestone-title">Vedalaştık</h3>
         <p class="milestone-desc">
           İkimiz de bunun geçici olduğunu biliyorduk, yine de vedalaşmak kolay olmadı.
@@ -212,9 +230,8 @@
         <p class="milestone-date">Temmuz Başı</p>
         <h3 class="milestone-title">Akşam Aramaları</h3>
         <p class="milestone-desc">
-          Her akşam görüntülü konuşmaya başladık. Bazen anlatacak çok şey olurdu,
-          bazen hiç olmazdı, öylece bakışırdık. Kapatmamız gerektiğini ikimiz de bilirdik
-          ama çoğu gece biri uyuyakalana kadar kapatmadık.
+          Her akşam görüntülü konuşmaya çalıştık. Bazen anlatacak çok şey olurdu,
+          bazen hiç olmazdı, öylece bakışırdık. Bazen de yoğunluktan konuşamadık çok özledik hasret çektik...
         </p>
       </li>
 
@@ -260,7 +277,7 @@
         <h3>Kapatamadığımız Telefonlar</h3>
         <p>
           Kaç kere "tamam, kapatıyorum" dedik bilmiyorum. Sonra yine bir şey aklımıza
-          geldi, yine konuştuk. Bazen konuşurken uyuyakaldık, telefon sabaha kadar açık kaldı.
+          geldi, yine konuştuk. Bazen konuşurken uyuyakaldın.
           Hiç dert etmedim. Sesini duyarak uyumak, o ay başıma gelen en güzel şeydi.
         </p>
       </article>
@@ -407,19 +424,26 @@
         <p class="salutation">Ebru'm,</p>
 
         <p>
-          Üç ay oldu. Son bir ayını aynı şehirde bile geçirmedik. Okul bittiğinde bunun bu kadar zor olacağını düşünmemiştim açıkçası. "Bir ay, idare ederiz" dedim kendime. İdare ettik de. Ama her akşam telefonu açıp yüzünü gördüğümde, gün boyu seni ne kadar beklediğimi ancak o an fark ediyordum.
+          Üç ay oldu. Son bir ayını aynı şehirde bile geçirmedik. Okul bittiğinde bunun bu kadar zor olacağını
+          düşünmemiştim açıkçası. "İki ay, idare ederiz" dedim kendime. İdare ettik de. Ama her akşam telefonu açıp
+          yüzünü gördüğümde, gün boyu seni ne kadar beklediğimi ancak o an fark ediyordum.
         </p>
 
         <p>
-          Telefonda konuşmak bana yetmedi, yalan söylemeyeceğim. Elini tutmak istedim, yanında oturmak istedim, hiçbir şey konuşmadan öylece durmak istedim. Ama bu ay bana bir şeyi de gösterdi: Ben seni yalnızca yanımdayken sevmiyorum. Sesin kesik kesik geldiğinde, görüntü donduğunda, uykulu uykulu konuştuğunda da aynı şekilde seviyorum.
+          Telefonda konuşmak bana yetmedi, yalan söylemeyeceğim. Elini tutmak istedim, yanında oturmak istedim, hiçbir
+          şey konuşmadan öylece durmak istedim. Ama bu ay bana bir şeyi de gösterdi: Ben seni yalnızca yanımdayken
+          sevmiyorum. Sesin kesik kesik geldiğinde, görüntü donduğunda, uykulu uykulu konuştuğunda da aynı şekilde
+          seviyorum.
         </p>
 
         <p>
-          Bu sayfaya hiç fotoğraf koyamadım, çünkü bu ay hiç fotoğrafımız olmadı. Ama bu ayı unutmayacağım. Seni ne kadar çok sevdiğimi en iyi, seni göremediğim bu otuz günde anladım.
+          Bu sayfaya hiç fotoğraf koyamadım, çünkü bu ay hiç fotoğrafımız olmadı. Ama bu ayı unutmayacağım. Seni ne
+          kadar çok sevdiğimi en iyi, seni göremediğim bu günlerde anladım.
         </p>
 
         <p>
-          Seni çok özledim. Yanına geldiğim gün sana sıkıca sarılacağım ve bir süre hiçbir şey söylemeyeceğim. Söylemem gerekenleri zaten biliyorsun.
+          Seni çok özledim. Yanına geldiğim gün sana sıkıca sarılacağım ve bir süre hiçbir şey söylemeyeceğim. Söylemem
+          gerekenleri zaten biliyorsun.
         </p>
 
         <p class="signoff">
@@ -454,4 +478,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>
